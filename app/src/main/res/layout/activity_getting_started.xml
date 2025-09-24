@@ -70,7 +70,7 @@
         app:strokeColor="#D0D5DD"
         app:strokeWidth="1dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/logup"
+        android:text="@string/signup"
         android:textSize="16sp"
         android:textColor="#344054"
         app:layout_constraintEnd_toEndOf="parent"
