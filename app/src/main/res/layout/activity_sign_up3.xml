@@ -10,7 +10,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="64dp"
             android:orientation="vertical"
@@ -48,19 +48,50 @@
 
             </RelativeLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_add_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/TextViewStyleH2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Добавление фотографии поможет владельцам и арендаторам узнать друг друга, когда они будут забирать машину" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/TextViewStyleLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Электронная почта" />
+                    android:text="Номер водительского удостоверения" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextViewStyleH2Gray"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxCornerRadiusBottomEnd="8dp"
@@ -74,7 +105,9 @@
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Введите электронную почту"
+                        android:hint="0000000000"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="10dp" />
 
@@ -85,9 +118,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Придумайте пароль" />
+                    android:text="Дата выдачи" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextViewStyleH2Gray"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxCornerRadiusBottomEnd="8dp"
@@ -96,14 +130,17 @@
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="#D0D5DD"
                     app:boxStrokeWidth="1dp"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="#D0D5DD">
+                    app:endIconTint="#667085"
+                    app:startIconDrawable="@drawable/ic_calendar">
 
                     <com.google.android.material.textfield.TextInputEditText
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Введите пароль"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:hint="DD/MM/YYYY"
+                        android:inputType="date"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="10dp" />
 
@@ -114,40 +151,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Повторите пароль" />
+                    android:text="Загрузите фото водительского удостоверения" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_upload" />
+
+                    <TextView
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/upload_photo" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewStyleLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="#D0D5DD"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="#D0D5DD">
+                    android:layout_marginTop="16dp"
+                    android:text="Загрузите фото паспорта" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/TextViewStyleH2Gray"
-                        android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Введите пароль"
-                        android:paddingHorizontal="14dp"
-                        android:paddingVertical="10dp" />
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_upload" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/upload_photo" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Я согласен с условиями обслуживания и политикой конфиденциальности"
-                android:textColor="@color/text_color"
-                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -166,4 +220,5 @@
             app:cornerRadius="8dp" />
 
     </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

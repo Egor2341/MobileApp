@@ -4,213 +4,219 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="64dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentStart="true"
-                android:background="@android:color/transparent"
-                android:layout_centerVertical="true"
-                android:padding="0dp"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/ic_arrow_back"
-                app:iconTint="@color/black" />
-
-            <TextView
-                style="@style/TextViewStyleH1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginHorizontal="24dp"
-                android:text="Создать аккаунт" />
-
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical">
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="64dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                style="@style/TextViewStyleLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Фамилия" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="#D0D5DD"
-                app:boxStrokeWidth="1dp"
-                style="@style/TextViewStyleH2Gray"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/TextViewStyleH2Gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Введите фамилию"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                style="@style/TextViewStyleLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Имя" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="#D0D5DD"
-                app:boxStrokeWidth="1dp"
-                style="@style/TextViewStyleH2Gray"
-
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/TextViewStyleH2Gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Введите имя"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                style="@style/TextViewStyleLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Отчество" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="#D0D5DD"
-                app:boxStrokeWidth="1dp"
-                style="@style/TextViewStyleH2Gray"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/TextViewStyleH2Gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Введите отчество"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                style="@style/TextViewStyleLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Дата рождения" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="#D0D5DD"
-                app:boxStrokeWidth="1dp"
-                app:startIconDrawable="@drawable/ic_calendar"
-                app:endIconTint="#667085"
-                style="@style/TextViewStyleH2Gray"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/TextViewStyleH2Gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp"
-                    android:inputType="date"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:hint="DD/MM/YYYY"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                style="@style/TextViewStyleLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Пол"/>
-
-            <RadioGroup
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <RadioButton
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:padding="0dp"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/ic_arrow_back"
+                    app:iconTint="@color/black" />
+
+                <TextView
+                    style="@style/TextViewStyleH1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Мужской"
-                    android:checked="true"/>
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="24dp"
+                    android:gravity="center_horizontal"
+                    android:text="Создать аккаунт" />
 
-                <RadioButton
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewStyleLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Женский"
-                    android:layout_marginStart="32dp"/>
+                    android:text="Фамилия" />
 
-            </RadioGroup>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextViewStyleH2Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="#D0D5DD"
+                    app:boxStrokeWidth="1dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Введите фамилию"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/TextViewStyleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Имя" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextViewStyleH2Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="#D0D5DD"
+                    app:boxStrokeWidth="1dp"
+
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Введите имя"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/TextViewStyleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Отчество" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextViewStyleH2Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="#D0D5DD"
+                    app:boxStrokeWidth="1dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Введите отчество"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/TextViewStyleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Дата рождения" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextViewStyleH2Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="#D0D5DD"
+                    app:boxStrokeWidth="1dp"
+                    app:endIconTint="#667085"
+                    app:startIconDrawable="@drawable/ic_calendar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:hint="DD/MM/YYYY"
+                        android:inputType="date"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/TextViewStyleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Пол" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Мужской" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="Женский" />
+
+                </RadioGroup>
 
 
+            </LinearLayout>
 
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            app:cornerRadius="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="32dp"
             android:backgroundTint="#2A1246"
             android:fontFamily="@font/montserrat_regular"
+            android:text="@string/next"
             android:textSize="14sp"
-            android:text="@string/next"/>
+            app:cornerRadius="8dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
