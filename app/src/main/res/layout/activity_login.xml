@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="138dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyleH1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Войдите в аккаунт" />
+
+            <TextView
+                style="@style/TextViewStyleH2Gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пожалуйста, введите свои данные" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Электронная почта" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="#D0D5DD"
+                app:boxStrokeWidth="1dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextViewStyleH2Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Введите электронную почту"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyleLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Пароль" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="#D0D5DD"
+                    app:boxStrokeColor="#D0D5DD"
+                    app:boxStrokeWidth="1dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/TextViewStyleH2Gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Введите пароль"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cornerRadius="0dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="14sp"
+            android:textColor="#2A1246"
+            android:text="Забыли пароль?"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#2A1246"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="@string/login"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/googleSignInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/TextViewStyleH2"
+            android:text="Войти через Google"
+            app:icon="@drawable/ic_google"
+            app:iconGravity="textStart"
+            app:iconTint="@null"
+            app:backgroundTint="#FFFFFF"
+            app:strokeColor="#D0D5DD"
+            app:strokeWidth="1dp"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            app:cornerRadius="0dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="14sp"
+            android:textColor="#2A1246"
+            android:text="Зарегистироваться"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
