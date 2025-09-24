@@ -20,11 +20,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="488.01dp"
+        android:layout_width="451dp"
         android:layout_height="307dp"
         android:layout_marginTop="149dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_onboarding1"
+        android:src="@drawable/img_onboarding3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,14 +48,14 @@
                 style="@style/TextViewStyleOnboardingH1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Аренда автомобилей" />
+                android:text="Лучшие предложения" />
 
             <TextView
                 style="@style/TextViewStyleH2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Открой для себя удобный и доступный\nспособ передвижения" />
+                android:text="Выбирай понравившееся среди сотен\nдоступных автомобилей" />
 
         </LinearLayout>
 
@@ -79,7 +78,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/shape_button_next"
-                android:text="Далее" />
+                android:text="Поехали" />
 
 
         </RelativeLayout>
