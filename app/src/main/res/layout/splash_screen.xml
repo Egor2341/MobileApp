@@ -36,7 +36,7 @@
     <ImageView
         android:layout_width="343dp"
         android:layout_height="343dp"
-        android:src="@drawable/main"
+        android:src="@drawable/img_main"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
