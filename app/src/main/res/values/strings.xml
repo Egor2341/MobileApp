@@ -2,4 +2,6 @@
     <string name="app_name">App</string>
     <string name="title">DriveNext</string>
     <string name="slogan">Поможем найти твою следующую поездку</string>
+    <string name="login">Войти</string>
+    <string name="logup">Зарегистрироваться</string>
 </resources>
