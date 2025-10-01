@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.app.databinding.FragmentOnboarding1Binding
 import com.example.app.databinding.FragmentOnboarding2Binding
+import com.google.android.material.button.MaterialButton
 
 
 class SecondOnboardingFragment : Fragment() {
@@ -22,12 +23,28 @@ class SecondOnboardingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentOnboarding2Binding.inflate(inflater, container, false)
+        val buttonNext: MaterialButton = binding.btnNext
+        buttonNext.setOnClickListener {
+            val newFragment = ThirdOnboardingFragment()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.cl_onboarding2, newFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+        val buttonSkip: MaterialButton = binding.btnSkip
+        buttonSkip.setOnClickListener {
+            val newFragment = GettingStartedFragment()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.cl_onboarding2, newFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
         return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = FirstOnboardingFragment()
+        fun newInstance() = SecondOnboardingFragment()
     }
 
 }
