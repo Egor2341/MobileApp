@@ -1,17 +1,19 @@
-package com.example.app
+package com.example.app.fragments.onboarding
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.app.databinding.FragmentOnboarding1Binding
+import com.example.app.R
+import com.example.app.databinding.FragmentOnboarding2Binding
+import com.example.app.fragments.GettingStartedFragment
 import com.google.android.material.button.MaterialButton
 
 
-class FirstOnboardingFragment : Fragment() {
+class SecondOnboardingFragment : Fragment() {
 
-    private var _binding: FragmentOnboarding1Binding? = null
+    private var _binding: FragmentOnboarding2Binding? = null
     private val binding
         get() = _binding
             ?: throw IllegalStateException("Binding for FragmentOnboardingBinding must not be null")
@@ -21,12 +23,12 @@ class FirstOnboardingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentOnboarding1Binding.inflate(inflater, container, false)
+        _binding = FragmentOnboarding2Binding.inflate(inflater, container, false)
         val buttonNext: MaterialButton = binding.btnNext
         buttonNext.setOnClickListener {
-            val newFragment = SecondOnboardingFragment()
+            val newFragment = ThirdOnboardingFragment()
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_onboarding1, newFragment)
+            transaction.replace(R.id.cl_onboarding2, newFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
@@ -34,19 +36,16 @@ class FirstOnboardingFragment : Fragment() {
         buttonSkip.setOnClickListener {
             val newFragment = GettingStartedFragment()
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_onboarding1, newFragment)
+            transaction.replace(R.id.cl_onboarding2, newFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
         return binding.root
     }
 
-
-
-
     companion object {
         @JvmStatic
-        fun newInstance() = FirstOnboardingFragment()
+        fun newInstance() = SecondOnboardingFragment()
     }
 
 }

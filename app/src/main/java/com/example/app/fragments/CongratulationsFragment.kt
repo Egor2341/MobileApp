@@ -1,4 +1,4 @@
-package com.example.app
+package com.example.app.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.app.databinding.FragmentCongratulationsBinding
-import com.example.app.databinding.FragmentSignUp3Binding
-import com.google.android.material.button.MaterialButton
+import com.example.app.fragments.sign_up.ThirdSignUpFragment
 
 class CongratulationsFragment : Fragment() {
     private var _binding: FragmentCongratulationsBinding? = null

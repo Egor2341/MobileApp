@@ -9,6 +9,8 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
+import com.example.app.fragments.onboarding.FirstOnboardingFragment
+import com.example.app.fragments.GettingStartedFragment
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

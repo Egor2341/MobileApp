@@ -1,11 +1,13 @@
-package com.example.app
+package com.example.app.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.app.R
 import com.example.app.databinding.FragmentGettingStartedBinding
+import com.example.app.fragments.sign_up.FirstSignUpFragment
 import com.google.android.material.button.MaterialButton
 
 class GettingStartedFragment : Fragment() {
@@ -29,8 +31,8 @@ class GettingStartedFragment : Fragment() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
-        val buttonSkip: MaterialButton = binding.btnSignUp
-        buttonSkip.setOnClickListener {
+        val buttonSignUp: MaterialButton = binding.btnSignUp
+        buttonSignUp.setOnClickListener {
             val newFragment = FirstSignUpFragment()
             val transaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.cl_getting_started, newFragment)

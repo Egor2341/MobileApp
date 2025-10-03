@@ -1,17 +1,17 @@
-package com.example.app
+package com.example.app.fragments.sign_up
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.app.databinding.FragmentGettingStartedBinding
-import com.example.app.databinding.FragmentSignUp1Binding
+import com.example.app.R
+import com.example.app.databinding.FragmentSignUp2Binding
 import com.google.android.material.button.MaterialButton
 
-class FirstSignUpFragment : Fragment() {
+class SecondSignUpFragment : Fragment() {
 
-    private var _binding: FragmentSignUp1Binding? = null
+    private var _binding: FragmentSignUp2Binding? = null
     private val binding
         get() = _binding
             ?: throw IllegalStateException("Binding for FragmentSignUpBinding must not be null")
@@ -21,12 +21,12 @@ class FirstSignUpFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSignUp1Binding.inflate(inflater, container, false)
+        _binding = FragmentSignUp2Binding.inflate(inflater, container, false)
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            val newFragment = SecondSignUpFragment()
+            val newFragment = ThirdSignUpFragment()
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_sign_up1, newFragment)
+            transaction.replace(R.id.cl_sign_up2, newFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
@@ -43,6 +43,6 @@ class FirstSignUpFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = FirstSignUpFragment()
+        fun newInstance() = SecondSignUpFragment()
     }
 }

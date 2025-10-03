@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SecondSignUpFragment"
+    tools:context=".fragments.sign_up.SecondSignUpFragment"
     android:background="@color/white">
 
     <RelativeLayout
@@ -190,12 +190,14 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/btn_man"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:text="Мужской" />
 
                     <RadioButton
+                        android:id="@+id/btn_woman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
