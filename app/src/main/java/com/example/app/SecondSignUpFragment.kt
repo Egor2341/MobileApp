@@ -5,35 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.app.databinding.FragmentGettingStartedBinding
+import com.example.app.databinding.FragmentSignUp1Binding
+import com.example.app.databinding.FragmentSignUp2Binding
 import com.google.android.material.button.MaterialButton
 
-class GettingStartedFragment : Fragment() {
+class SecondSignUpFragment : Fragment() {
 
-    private var _binding: FragmentGettingStartedBinding? = null
+    private var _binding: FragmentSignUp2Binding? = null
     private val binding
         get() = _binding
-            ?: throw IllegalStateException("Binding for FragmentGettingStartedBinding must not be null")
+            ?: throw IllegalStateException("Binding for FragmentSignUpBinding must not be null")
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentGettingStartedBinding.inflate(inflater, container, false)
-        val buttonNext: MaterialButton = binding.btnSignIn
-        buttonNext.setOnClickListener {
-            val newFragment = SignInFragment()
+        _binding = FragmentSignUp2Binding.inflate(inflater, container, false)
+        val btnNext: MaterialButton = binding.btnNext
+        btnNext.setOnClickListener {
+            val newFragment = ThirdSignUpFragment()
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_getting_started, newFragment)
+            transaction.replace(R.id.cl_sign_up2, newFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
-        val buttonSkip: MaterialButton = binding.btnSignUp
-        buttonSkip.setOnClickListener {
+        val btnBack: MaterialButton = binding.btnBack
+        btnBack.setOnClickListener {
             val newFragment = FirstSignUpFragment()
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_getting_started, newFragment)
+            transaction.replace(R.id.cl_sign_up2, newFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
@@ -42,6 +43,6 @@ class GettingStartedFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = GettingStartedFragment()
+        fun newInstance() = SecondSignUpFragment()
     }
 }

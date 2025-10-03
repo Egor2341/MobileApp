@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.splash_screen)
         var screen = 0
 
+            // Для сброса IS_FIRST_TIME
 //        lifecycleScope.launch {
 //            dataStore.updateData { currentPrefs ->
 //                val mutable = currentPrefs.toMutablePreferences()
@@ -47,21 +48,22 @@ class MainActivity : AppCompatActivity() {
                         mutable
                     }
                 }
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
-                    .commit()
-//                if (screen == 1) {
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
-//                        .commit()
-//                } else {
-//                    supportFragmentManager
+                // Для проверки Onboarding
+//                supportFragmentManager
 //                    .beginTransaction()
-//                    .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
+//                    .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
 //                    .commit()
-//                }
+                if (screen == 1) {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
+                        .commit()
+                } else {
+                    supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
+                    .commit()
+                }
             }
         }
 
