@@ -1,6 +1,8 @@
 package com.example.app
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
@@ -9,9 +11,11 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
-import com.example.app.fragments.onboarding.FirstOnboardingFragment
 import com.example.app.fragments.GettingStartedFragment
+import com.example.app.fragments.NoConnectionFragment
+import com.example.app.fragments.onboarding.FirstOnboardingFragment
 import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.splash_screen)
         var screen = 0
 
-            // Для сброса IS_FIRST_TIME
+        // Для сброса IS_FIRST_TIME
 //        lifecycleScope.launch {
 //            dataStore.updateData { currentPrefs ->
 //                val mutable = currentPrefs.toMutablePreferences()
@@ -59,20 +63,34 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
+                        .addToBackStack(null)
                         .commit()
                 } else {
                     supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
+                        .addToBackStack(null)
                     .commit()
                 }
             }
         }
+    }
 
+    fun isInternet() : Boolean{
+        val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
 
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
 
+    }
 
-
+    fun noConFragment(id: Int) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(id, NoConnectionFragment.newInstance())
+            .addToBackStack("No internet")
+            .commit()
     }
 
 }
