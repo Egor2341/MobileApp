@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentOnboarding3Binding
 import com.example.app.fragments.GettingStartedFragment
@@ -34,11 +35,8 @@ class ThirdOnboardingFragment : Fragment() {
     }
 
     private fun clickButton() {
-        val newFragment = GettingStartedFragment()
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.cl_onboarding3, newFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        val activity = requireActivity() as? MainActivity
+            activity?.changeFragment(GettingStartedFragment(), R.id.cl_onboarding3)
     }
 
     companion object {

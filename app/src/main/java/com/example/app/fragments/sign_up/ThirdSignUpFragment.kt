@@ -11,6 +11,7 @@ import com.example.app.databinding.FragmentSignUp3Binding
 import com.google.android.material.button.MaterialButton
 import android.net.Uri
 import android.widget.ImageView
+import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.fragments.CongratulationsFragment
 
@@ -28,21 +29,14 @@ class ThirdSignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignUp3Binding.inflate(inflater, container, false)
+        val activity = requireActivity() as? MainActivity
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            val newFragment = CongratulationsFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_sign_up3, newFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            activity?.changeFragment(CongratulationsFragment(), R.id.cl_sign_up3)
         }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
-            val newFragment = SecondSignUpFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_sign_up3, newFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            activity?.changeFragment(SecondSignUpFragment(), R.id.cl_sign_up3)
         }
         val btnAddUserPhoto: ImageButton = binding.btnAddUserPhoto
         val getAvatarContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->

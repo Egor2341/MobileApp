@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentSignUp1Binding
 import com.example.app.fragments.GettingStartedFragment
@@ -23,21 +24,14 @@ class FirstSignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignUp1Binding.inflate(inflater, container, false)
+        val activity = requireActivity() as? MainActivity
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            val newFragment = SecondSignUpFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_sign_up1, newFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            activity?.changeFragment(SecondSignUpFragment(), R.id.cl_sign_up1)
         }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
-            val newFragment = GettingStartedFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.cl_sign_up1, newFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            activity?.changeFragment(GettingStartedFragment(), R.id.cl_sign_up1)
         }
         return binding.root
     }

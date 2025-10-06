@@ -24,30 +24,17 @@ class GettingStartedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentGettingStartedBinding.inflate(inflater, container, false)
+        val activity = requireActivity() as? MainActivity
         val btnSignIn: MaterialButton = binding.btnSignIn
 
         btnSignIn.setOnClickListener {
-            changeFragment(SignInFragment())
+            activity?.changeFragment(SignInFragment(), R.id.cl_getting_started)
         }
         val buttonSignUp: MaterialButton = binding.btnSignUp
         buttonSignUp.setOnClickListener {
-            changeFragment(FirstSignUpFragment())
+            activity?.changeFragment(FirstSignUpFragment(), R.id.cl_getting_started)
         }
         return binding.root
-    }
-
-    private fun changeFragment(fragment: Fragment){
-        val activity = requireActivity() as? MainActivity
-        if (activity != null) {
-            if (activity.isInternet()) {
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.cl_getting_started, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
-            } else {
-                activity.noConFragment(R.id.cl_getting_started)
-            }
-        }
     }
 
     companion object {

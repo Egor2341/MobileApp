@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
@@ -91,6 +92,17 @@ class MainActivity : AppCompatActivity() {
             .replace(id, NoConnectionFragment.newInstance())
             .addToBackStack("No internet")
             .commit()
+    }
+
+    fun changeFragment(fragment: Fragment, id: Int){
+            if (isInternet()) {
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(id, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            } else {
+                noConFragment(id)
+            }
     }
 
 }
