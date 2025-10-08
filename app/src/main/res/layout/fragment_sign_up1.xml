@@ -76,12 +76,14 @@
                     app:boxStrokeWidth="1dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_mail"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Введите электронную почту"
                         android:paddingHorizontal="14dp"
-                        android:paddingVertical="10dp" />
+                        android:paddingVertical="10dp"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

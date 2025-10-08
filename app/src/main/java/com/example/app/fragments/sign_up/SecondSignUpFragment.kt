@@ -31,7 +31,8 @@ class SecondSignUpFragment : Fragment() {
         }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
-            activity?.changeFragment(FirstSignUpFragment(), R.id.cl_sign_up2)
+//            activity?.changeFragment(FirstSignUpFragment(), R.id.cl_sign_up2
+            parentFragmentManager.popBackStack()
         }
         return binding.root
     }

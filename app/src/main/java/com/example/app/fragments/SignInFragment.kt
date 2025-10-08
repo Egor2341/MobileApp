@@ -26,7 +26,8 @@ class SignInFragment : Fragment() {
         val buttonSignUp: MaterialButton = binding.btnSignUp
         val activity = requireActivity() as? MainActivity
         buttonSignUp.setOnClickListener {
-            activity?.changeFragment(FirstSignUpFragment(), R.id.cl_sign_in)
+            activity?.changeFragment(FirstSignUpFragment.newInstance(),
+                R.id.cl_sign_in, "sign_in")
         }
         return binding.root
     }

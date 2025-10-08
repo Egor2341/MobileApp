@@ -40,14 +40,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-
         lifecycleScope.launch {
             dataStore.data.collect { prefs ->
                 val isFirstTime = prefs[IS_FIRST_TIME] ?: true
 
                 if (isFirstTime) {
                     val newToken = "token_${System.currentTimeMillis()}"
-                    screen=1
+                    screen = 1
                     dataStore.updateData { currentPrefs ->
                         val mutable = currentPrefs.toMutablePreferences()
                         mutable[TOKEN] = newToken
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                         mutable
                     }
                 }
-                // Для проверки Onboarding
+//                 Для проверки Onboarding
 //                supportFragmentManager
 //                    .beginTransaction()
 //                    .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
@@ -77,8 +76,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun isInternet() : Boolean{
-        val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isInternet(): Boolean {
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork ?: return false
         val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
 
@@ -94,15 +94,26 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun changeFragment(fragment: Fragment, id: Int){
-            if (isInternet()) {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(id, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
-            } else {
-                noConFragment(id)
-            }
+    fun changeFragment(fragment: Fragment, id: Int, back: String) {
+        if (isInternet()) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(id, fragment)
+            transaction.addToBackStack(back)
+            transaction.commit()
+        } else {
+            noConFragment(id)
+        }
+    }
+
+    fun changeFragment(fragment: Fragment, id: Int) {
+        if (isInternet()) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(id, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        } else {
+            noConFragment(id)
+        }
     }
 
 }
