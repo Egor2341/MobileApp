@@ -32,17 +32,19 @@ class SecondSignUpFragment : Fragment() {
         val activity = requireActivity() as? MainActivity
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-//            if (checkFields()) {
+            if (checkFields()) {
                 activity?.changeFragment(
                     ThirdSignUpFragment.newInstance(),
                     R.id.cl_sign_up2, "second_signup"
                 )
-//            }
+            }
         }
+
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+
         val date = binding.etDate
         date.setOnClickListener {
             val calendar = Calendar.getInstance()

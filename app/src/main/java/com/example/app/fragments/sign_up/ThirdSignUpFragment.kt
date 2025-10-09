@@ -47,34 +47,14 @@ class ThirdSignUpFragment : Fragment() {
     val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
-                if (curPhoto.equals("license")){
-                    licensePhoto = true
-                } else if (curPhoto.equals("passport")) {
-                    passportPhoto = true
-                } else {
-                    val image: ImageView = binding.ivUserPhoto
-                    Glide.with(requireContext())
-                        .load(uri)
-                        .circleCrop()
-                        .into(image)
-                }
+                savePhoto(uri)
             }
         }
 
     val cameraLauncher =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
             if (success) {
-                if (curPhoto.equals("license")){
-                    licensePhoto = true
-                } else if (curPhoto.equals("passport")) {
-                    passportPhoto = true
-                } else {
-                    val image: ImageView = binding.ivUserPhoto
-                    Glide.with(requireContext())
-                        .load(imageUri)
-                        .circleCrop()
-                        .into(image)
-                }
+                savePhoto(imageUri)
             }
         }
 
@@ -241,6 +221,20 @@ class ThirdSignUpFragment : Fragment() {
             file
         )
         cameraLauncher.launch(imageUri)
+    }
+
+    private fun savePhoto(uri: Uri) {
+        if (curPhoto.equals("license")){
+            licensePhoto = true
+        } else if (curPhoto.equals("passport")) {
+            passportPhoto = true
+        } else {
+            val image: ImageView = binding.ivUserPhoto
+            Glide.with(requireContext())
+                .load(uri)
+                .circleCrop()
+                .into(image)
+        }
     }
 
     companion object {
