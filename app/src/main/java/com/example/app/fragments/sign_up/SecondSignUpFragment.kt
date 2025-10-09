@@ -27,11 +27,13 @@ class SecondSignUpFragment : Fragment() {
         val activity = requireActivity() as? MainActivity
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            activity?.changeFragment(ThirdSignUpFragment(), R.id.cl_sign_up2)
+            activity?.changeFragment(
+                ThirdSignUpFragment.newInstance(),
+                R.id.cl_sign_up2, "second_signup"
+            )
         }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
-//            activity?.changeFragment(FirstSignUpFragment(), R.id.cl_sign_up2
             parentFragmentManager.popBackStack()
         }
         return binding.root

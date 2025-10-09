@@ -82,8 +82,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Введите электронную почту"
                         android:paddingHorizontal="14dp"
-                        android:paddingVertical="10dp"
-                        />
+                        android:paddingVertical="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,6 +106,7 @@
                     app:endIconTint="#D0D5DD">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,6 +136,7 @@
                     app:endIconTint="#D0D5DD">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_repeat_password"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -148,6 +149,7 @@
             </LinearLayout>
 
             <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chb_confidence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

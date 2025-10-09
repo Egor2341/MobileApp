@@ -30,7 +30,8 @@ class FirstSignUpFragment : Fragment() {
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
             if (checkFields()) {
-                activity?.changeFragment(SecondSignUpFragment.newInstance(), R.id.cl_sign_up2, "first_signup")
+                activity?.changeFragment(SecondSignUpFragment.newInstance(),
+                    R.id.cl_sign_up1, "first_signup")
             }
         }
         val btnBack: MaterialButton = binding.btnBack
@@ -41,12 +42,76 @@ class FirstSignUpFragment : Fragment() {
     }
 
     private fun checkFields(): Boolean {
+        return when {
+            !validateEmail() -> {
+                false
+            }
+            !validatePassword() -> {
+                false
+            }
+            !binding.etPassword.text.toString()
+                .equals(binding.etRepeatPassword.text.toString()) -> {
+                    binding.etRepeatPassword.error = "Пароли не совпадают"
+                return false
+            }
+            !binding.chbConfidence.isChecked -> {
+                binding.chbConfidence.error = ""
+                return false
+            }
+            else -> {
+                binding.etRepeatPassword.error = null
+                binding.chbConfidence.error = null
+                true
+            }
+        }
+    }
+
+    fun validateEmail() : Boolean {
         val emailPattern = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
-        val mail: TextInputEditText = binding.etMail
-        if (!emailPattern.matches(mail.text.toString())) {
+        val email: TextInputEditText = binding.etMail
+        if (!emailPattern.matches(email.text.toString())) {
+            email.error = "Введите корректный email"
             return false
         }
+        email.error = null
         return true
+    }
+
+    fun validatePassword(): Boolean {
+        val password = binding.etPassword
+        val passwordText = password.text.toString()
+
+        val minLength = 8
+        val hasDigit = passwordText.any { it.isDigit() }
+        val hasUpperCase = passwordText.any { it.isUpperCase() }
+        val hasSpecialChar = passwordText.any { "!@#$%^&*()-_=+<>?/{}~|".contains(it) }
+
+        return when {
+            passwordText.isEmpty() -> {
+                password.error = "Введите пароль"
+                false
+            }
+            passwordText.length < minLength -> {
+                password.error = "Пароль должен быть не менее $minLength символов"
+                false
+            }
+            !hasDigit -> {
+                password.error = "Пароль должен содержать хотя бы одну цифру"
+                false
+            }
+            !hasUpperCase -> {
+                password.error = "Пароль должен содержать хотя бы одну заглавную букву"
+                false
+            }
+            !hasSpecialChar -> {
+                password.error = "Пароль должен содержать хотя бы один специальный символ"
+                false
+            }
+            else -> {
+                password.error = null
+                true
+            }
+        }
     }
 
     companion object {
