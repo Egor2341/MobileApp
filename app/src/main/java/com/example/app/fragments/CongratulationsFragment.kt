@@ -26,6 +26,6 @@ class CongratulationsFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ThirdSignUpFragment()
+        fun newInstance() = CongratulationsFragment()
     }
 }

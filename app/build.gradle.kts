@@ -49,4 +49,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.datastore:datastore-preferences:1.1.7")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
 }

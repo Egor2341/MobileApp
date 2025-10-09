@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/ll_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="24dp"
@@ -108,6 +109,7 @@
                     app:boxStrokeWidth="1dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_license_number"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,6 +142,7 @@
                     app:startIconDrawable="@drawable/ic_calendar">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_date"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -160,6 +163,7 @@
                     android:text="Загрузите фото водительского удостоверения" />
 
                 <LinearLayout
+                    android:id="@+id/ll_license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -171,6 +175,7 @@
                         android:src="@drawable/ic_upload" />
 
                     <TextView
+                        android:id="@+id/tw_license"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -199,6 +204,7 @@
                         android:src="@drawable/ic_upload" />
 
                     <TextView
+                        android:id="@+id/tw_passport"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -211,7 +217,20 @@
 
             </LinearLayout>
 
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tw_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_next"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:text=""
+            android:textColor="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_next"
