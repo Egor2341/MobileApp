@@ -77,6 +77,7 @@
                     app:boxStrokeWidth="1dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_lastname"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -107,6 +108,7 @@
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_firstname"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -135,6 +137,7 @@
                     app:boxStrokeWidth="1dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_patronymic"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,11 +168,10 @@
                     app:startIconDrawable="@drawable/ic_calendar">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_date"
                         style="@style/TextViewStyleH2Gray"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="false"
                         android:hint="DD/MM/YYYY"
                         android:inputType="date"
                         android:paddingHorizontal="14dp"

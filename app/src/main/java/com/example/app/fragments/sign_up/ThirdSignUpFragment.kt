@@ -32,11 +32,12 @@ class ThirdSignUpFragment : Fragment() {
         val activity = requireActivity() as? MainActivity
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            activity?.changeFragment(CongratulationsFragment(), R.id.cl_sign_up3)
+            activity?.changeFragment(CongratulationsFragment.newInstance(),
+                R.id.cl_sign_up3)
         }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
-            activity?.changeFragment(SecondSignUpFragment(), R.id.cl_sign_up3)
+            parentFragmentManager.popBackStack()
         }
         val btnAddUserPhoto: ImageButton = binding.btnAddUserPhoto
         val getAvatarContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->

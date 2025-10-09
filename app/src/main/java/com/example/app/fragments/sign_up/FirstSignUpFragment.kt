@@ -29,10 +29,10 @@ class FirstSignUpFragment : Fragment() {
         val activity = requireActivity() as? MainActivity
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            if (checkFields()) {
+//            if (checkFields()) {
                 activity?.changeFragment(SecondSignUpFragment.newInstance(),
                     R.id.cl_sign_up1, "first_signup")
-            }
+//            }
         }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
@@ -52,11 +52,11 @@ class FirstSignUpFragment : Fragment() {
             !binding.etPassword.text.toString()
                 .equals(binding.etRepeatPassword.text.toString()) -> {
                     binding.etRepeatPassword.error = "Пароли не совпадают"
-                return false
+                false
             }
             !binding.chbConfidence.isChecked -> {
                 binding.chbConfidence.error = ""
-                return false
+                false
             }
             else -> {
                 binding.etRepeatPassword.error = null

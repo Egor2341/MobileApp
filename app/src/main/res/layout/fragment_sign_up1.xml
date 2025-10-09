@@ -81,6 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Введите электронную почту"
+                        android:inputType="textEmailAddress"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="10dp" />
 
