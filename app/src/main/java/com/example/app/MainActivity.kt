@@ -15,6 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
+import io.github.cdimascio.dotenv.dotenv
+import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.coroutines.launch
 
 
@@ -24,6 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     val TOKEN = stringPreferencesKey("token")
     val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
+
+    val dotenv = dotenv()
+    val supabase = createSupabaseClient(
+        supabaseUrl = dotenv["SUPABASE_URL"],
+        supabaseKey = dotenv["SUPABASE_KEY"]
+    ) {
+        install(Postgrest)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,10 +78,10 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                 } else {
                     supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
+                        .beginTransaction()
+                        .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
                         .addToBackStack(null)
-                    .commit()
+                        .commit()
                 }
             }
         }
