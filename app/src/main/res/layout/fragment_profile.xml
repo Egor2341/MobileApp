@@ -167,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tw_google_value" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parrent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

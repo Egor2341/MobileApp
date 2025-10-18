@@ -21,10 +21,14 @@ import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.app.MainActivity
 import com.example.app.R
+import com.example.app.data.User
 import com.example.app.fragments.CongratulationsFragment
+import com.example.app.servicies.Insert
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -67,9 +71,39 @@ class ThirdSignUpFragment : Fragment() {
         _binding = FragmentSignUp3Binding.inflate(inflater, container, false)
         val activity = requireActivity() as? MainActivity
 
+        var firstPage = Bundle()
+        var secondPage =  Bundle()
+
+        parentFragmentManager.setFragmentResultListener(
+            "firstPage",
+            this
+        ) { key, bundle ->
+            firstPage = bundle
+        }
+
+        parentFragmentManager.setFragmentResultListener(
+            "secondPage",
+            this
+        ) { key, bundle ->
+            secondPage = bundle
+        }
+
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
             if (checkFields()) {
+
+                val user = User(
+                    firstPage.getString("email")
+                            ?: throw java.lang.IllegalStateException("email can`t be null"),
+                    firstPage.getString("password")
+                            ?: throw java.lang.IllegalStateException("email can`t be null"),
+
+                    )
+
+                lifecycleScope.launch {
+                    Insert.newInstance().insertData("users", user)
+                }
+
                 activity?.changeFragment(
                     CongratulationsFragment.newInstance(),
                     R.id.cl_sign_up3
@@ -224,7 +258,7 @@ class ThirdSignUpFragment : Fragment() {
     }
 
     private fun savePhoto(uri: Uri) {
-        if (curPhoto.equals("license")){
+        if (curPhoto.equals("license")) {
             licensePhoto = true
         } else if (curPhoto.equals("passport")) {
             passportPhoto = true

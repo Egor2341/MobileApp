@@ -138,6 +138,7 @@ class SignInFragment : Fragment() {
         }
         email.error = null
         return true
+
     }
 
 

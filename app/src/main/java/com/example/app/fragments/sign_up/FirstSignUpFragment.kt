@@ -4,13 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.app.MainActivity
 import com.example.app.R
+import com.example.app.data.User
 import com.example.app.databinding.FragmentSignUp1Binding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.text.Regex
+
+import java.security.SecureRandom
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
+import java.util.Base64
+
 
 class FirstSignUpFragment : Fragment() {
 
@@ -27,11 +35,26 @@ class FirstSignUpFragment : Fragment() {
     ): View? {
         _binding = FragmentSignUp1Binding.inflate(inflater, container, false)
         val activity = requireActivity() as? MainActivity
+
+
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
             if (checkFields()) {
-                activity?.changeFragment(SecondSignUpFragment.newInstance(),
-                    R.id.cl_sign_up1, "first_signup")
+                parentFragmentManager.setFragmentResult(
+                    "firstPage",
+                    bundleOf(
+                        "email" to binding.etMail.text.toString(),
+                                "password" to hashPassword(
+                                    binding.etRepeatPassword.text.toString(),
+                                    generateRandomSalt())
+                        )
+                )
+
+                activity?.changeFragment(
+                    SecondSignUpFragment.newInstance(),
+                    R.id.cl_sign_up1, "first_signup"
+                )
+
             }
         }
         val btnBack: MaterialButton = binding.btnBack
@@ -46,18 +69,22 @@ class FirstSignUpFragment : Fragment() {
             !validateEmail() -> {
                 false
             }
+
             !validatePassword() -> {
                 false
             }
+
             !binding.etPassword.text.toString()
                 .equals(binding.etRepeatPassword.text.toString()) -> {
-                    binding.etRepeatPassword.error = "Пароли не совпадают"
+                binding.etRepeatPassword.error = "Пароли не совпадают"
                 false
             }
+
             !binding.chbConfidence.isChecked -> {
                 binding.chbConfidence.error = ""
                 false
             }
+
             else -> {
                 binding.etRepeatPassword.error = null
                 binding.chbConfidence.error = null
@@ -66,7 +93,7 @@ class FirstSignUpFragment : Fragment() {
         }
     }
 
-    fun validateEmail() : Boolean {
+    fun validateEmail(): Boolean {
         val emailPattern = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
         val email: TextInputEditText = binding.etMail
         if (!emailPattern.matches(email.text.toString())) {
@@ -91,27 +118,47 @@ class FirstSignUpFragment : Fragment() {
                 password.error = "Введите пароль"
                 false
             }
+
             passwordText.length < minLength -> {
                 password.error = "Пароль должен быть не менее $minLength символов"
                 false
             }
+
             !hasDigit -> {
                 password.error = "Пароль должен содержать хотя бы одну цифру"
                 false
             }
+
             !hasUpperCase -> {
                 password.error = "Пароль должен содержать хотя бы одну заглавную букву"
                 false
             }
+
             !hasSpecialChar -> {
                 password.error = "Пароль должен содержать хотя бы один специальный символ"
                 false
             }
+
             else -> {
                 password.error = null
                 true
             }
         }
+    }
+
+    fun generateRandomSalt(): ByteArray {
+        val salt = ByteArray(16)
+        SecureRandom().nextBytes(salt)
+        return salt
+    }
+
+    fun hashPassword(password: String, salt: ByteArray): String {
+        val spec = PBEKeySpec(password.toCharArray(), salt,
+            65536, 256)
+        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+        val hash = factory.generateSecret(spec).encoded
+
+        return Base64.getEncoder().encodeToString(salt + hash)
     }
 
     companion object {

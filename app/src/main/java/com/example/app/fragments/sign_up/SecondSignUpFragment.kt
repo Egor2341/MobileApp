@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.app.MainActivity
 import com.example.app.R
@@ -28,11 +29,30 @@ class SecondSignUpFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentSignUp2Binding.inflate(inflater, container, false)
         val activity = requireActivity() as? MainActivity
+
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
             if (checkFields()) {
+                var gender: String
+                if (binding.btnMan.isChecked){
+                    gender = binding.btnMan.text.toString()
+                } else {
+                    gender = binding.btnWoman.text.toString()
+                }
+                parentFragmentManager.setFragmentResult(
+                    "secondPage",
+                    bundleOf(
+                                    "lastName" to binding.etLastname.text.toString(),
+                        "firstName" to binding.etFirstname.text.toString(),
+                        "patronymic" to binding.etPatronymic.text.toString(),
+                        "dob" to binding.etDate.text.toString(),
+                        "gender" to gender
+                                )
+                )
+
                 activity?.changeFragment(
                     ThirdSignUpFragment.newInstance(),
                     R.id.cl_sign_up2, "second_signup"
