@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
+import io.github.cdimascio.dotenv.Dotenv
 import kotlinx.coroutines.launch
 
 

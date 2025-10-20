@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("plugin.serialization") version "2.2.20"
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -55,9 +55,11 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.6.0-beta02")
     implementation("com.google.android.libraries.identity.googleid:googleid:<latest version>")
     implementation("com.google.android.gms:play-services-auth:21.4.0")
-    implementation(platform("io.github.jan-tennert.supabase:bom:3.2.4"))
+
+    implementation(platform("io.github.jan-tennert.supabase:bom:2.1.2"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
-    implementation("io.ktor:ktor-client-android:3.3.1")
+    implementation("io.ktor:ktor-client-android:2.3.5")
+
     implementation("io.github.cdimascio:dotenv-kotlin:6.5.1")
     implementation("androidx.cardview:cardview:1.0.0")
 }

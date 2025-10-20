@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.app.MainActivity
 import com.example.app.R
-import com.example.app.data.User
 import com.example.app.databinding.FragmentSignUp1Binding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
