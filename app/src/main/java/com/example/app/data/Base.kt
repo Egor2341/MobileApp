@@ -3,6 +3,7 @@ package com.example.app.data
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.storage.Storage
 
 class Base {
 
@@ -11,6 +12,7 @@ class Base {
         supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkdGJqcmlla3NwYXVzbWtjZ2dkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MTQ1MzAsImV4cCI6MjA3NjA5MDUzMH0.huZUuIzeNA0pwYZ65RHW-XDHMB_pBZkbIkfmztF2cRo"
     ) {
         install(Postgrest)
+        install(Storage)
     }
 
     fun getClient() : SupabaseClient{

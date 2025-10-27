@@ -37,15 +37,21 @@
     </style>
 
     <style name="TextViewStyleSettingsElements" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/settings_elements</item>
     </style>
 
     <style name="TextViewStyleProfileElements" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/montserrat_semi_bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="TextViewStyleSettingsLabels" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/settings_label</item>
     </style>
 
 </resources>

@@ -38,7 +38,7 @@ class FirstSignUpFragment : Fragment() {
 
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-            if (checkFields()) {
+//            if (checkFields()) {
                 parentFragmentManager.setFragmentResult(
                     "firstPage",
                     bundleOf(
@@ -55,7 +55,7 @@ class FirstSignUpFragment : Fragment() {
                 )
 
             }
-        }
+//        }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
             parentFragmentManager.popBackStack()

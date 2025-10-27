@@ -9,6 +9,7 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentGettingStartedBinding
 import com.example.app.fragments.sign_up.FirstSignUpFragment
+import com.example.app.fragments.sign_up.ThirdSignUpFragment
 import com.google.android.material.button.MaterialButton
 
 class GettingStartedFragment : Fragment() {
@@ -31,9 +32,14 @@ class GettingStartedFragment : Fragment() {
             activity?.changeFragment(SignInFragment.newInstance(),
                 R.id.cl_getting_started)
         }
+//        val buttonSignUp: MaterialButton = binding.btnSignUp
+//        buttonSignUp.setOnClickListener {
+//            activity?.changeFragment(FirstSignUpFragment.newInstance(),
+//                R.id.cl_getting_started, "getting_start")
+//        }
         val buttonSignUp: MaterialButton = binding.btnSignUp
         buttonSignUp.setOnClickListener {
-            activity?.changeFragment(FirstSignUpFragment.newInstance(),
+            activity?.changeFragment(ThirdSignUpFragment.newInstance(),
                 R.id.cl_getting_started, "getting_start")
         }
         return binding.root

@@ -3,8 +3,6 @@ package com.example.app.fragments.sign_up
 import android.Manifest
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +15,6 @@ import com.example.app.databinding.FragmentSignUp3Binding
 import com.google.android.material.button.MaterialButton
 import android.net.Uri
 import android.os.Environment
-import android.util.Log
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -29,11 +26,14 @@ import com.example.app.R
 import com.example.app.data.User
 import com.example.app.fragments.CongratulationsFragment
 import com.example.app.servicies.Insert
+import com.example.app.servicies.UserImages
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.Calendar
 import java.util.Locale
 
@@ -48,6 +48,8 @@ class ThirdSignUpFragment : Fragment() {
     var curPhoto = ""
     var licensePhoto = false
     var passportPhoto = false
+
+    var photos = arrayOfNulls<Uri>(3)
 
     lateinit var imageUri: Uri
 
@@ -95,36 +97,37 @@ class ThirdSignUpFragment : Fragment() {
         btnNext.setOnClickListener {
 //            if (checkFields()) {
 
-            Log.d("CHECK", firstPage.getString("email").toString())
+//                val email = firstPage.getString("email")
+//                    ?: throw java.lang.IllegalStateException("email can't be null")
+//                val user = User(
+//                    email,
+//                    firstPage.getString("password")
+//                        ?: throw java.lang.IllegalStateException("email can't be null"),
+//                    secondPage.getString("lastName")
+//                        ?: throw java.lang.IllegalStateException("lastName can't be null"),
+//                    secondPage.getString("firstName")
+//                        ?: throw java.lang.IllegalStateException("firstName can't be null"),
+//                    secondPage.getString("patronymic")
+//                        ?: throw java.lang.IllegalStateException("patronymic can't be null"),
+//                    convertToDifferentFormatDate(secondPage.getString("dob"))
+//                        ?: throw java.lang.IllegalStateException("dob can't be null"),
+//                    secondPage.getString("gender")
+//                        ?: throw java.lang.IllegalStateException("gender can't be null"),
+//                    binding.etLicenseNumber.text.toString(),
+//                    convertToDifferentFormatDate(binding.etDate.text.toString())
+//                        ?: throw java.lang.IllegalStateException("licenseDate can't be null")
+//                )
 
-            val user = User(
-                firstPage.getString("email")
-                    ?: throw java.lang.IllegalStateException("email can't be null"),
-                firstPage.getString("password")
-                    ?: throw java.lang.IllegalStateException("email can't be null"),
-                secondPage.getString("lastName")
-                    ?: throw java.lang.IllegalStateException("lastName can't be null"),
-                secondPage.getString("firstName")
-                    ?: throw java.lang.IllegalStateException("firstName can't be null"),
-                secondPage.getString("patronymic")
-                    ?: throw java.lang.IllegalStateException("patronymic can't be null"),
-                convertToDifferentFormatDate(secondPage.getString("dob"))
-                    ?: throw java.lang.IllegalStateException("dob can't be null"),
-                secondPage.getString("gender")
-                    ?: throw java.lang.IllegalStateException("gender can't be null"),
-                binding.etLicenseNumber.text.toString(),
-                convertToDifferentFormatDate(binding.etDate.text.toString())
-                    ?: throw java.lang.IllegalStateException("licenseDate can't be null")
-            )
+//                lifecycleScope.launch {
+//                    Insert.newInstance().insertData("users", user)
+//                }
 
-            lifecycleScope.launch {
-                Insert.newInstance().insertData("users", user)
-            }
+                uploadImages("test")
 
-            activity?.changeFragment(
-                CongratulationsFragment.newInstance(),
-                R.id.cl_sign_up3
-            )
+                activity?.changeFragment(
+                    CongratulationsFragment.newInstance(),
+                    R.id.cl_sign_up3
+                )
 //            }
         }
 
@@ -134,16 +137,6 @@ class ThirdSignUpFragment : Fragment() {
         }
 
         val btnAddUserPhoto: ImageButton = binding.btnAddUserPhoto
-        val getAvatarContent =
-            registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-                if (uri != null) {
-                    val image: ImageView = binding.ivUserPhoto
-                    Glide.with(requireContext())
-                        .load(uri)
-                        .circleCrop()
-                        .into(image)
-                }
-            }
 
         btnAddUserPhoto.setOnClickListener {
             curPhoto = "user"
@@ -192,11 +185,58 @@ class ThirdSignUpFragment : Fragment() {
     }
 
 
+    fun uriToByteArray(uri: Uri): ByteArray {
+        val inputStream: InputStream? = requireContext().contentResolver.openInputStream(uri)
+        val imageBytes = inputStream?.readBytes()
+        inputStream?.close()
+        if (imageBytes == null) {
+            throw java.lang.IllegalStateException("Image can't be null")
+        }
+        return imageBytes
+    }
+
+    fun uploadImages(email: String) {
+        lifecycleScope.launch {
+//            for (photo in photos) {
+//                UserImages.newInstance().uploadImage(
+//                    email,
+//                    uriToByteArray(
+//                        photo
+//                            ?: throw java.lang.IllegalStateException("Image can't be null")
+//                    )
+//                )
+//            }
+            UserImages.newInstance().uploadImage(
+                    email,
+                    uriToByteArray(
+                        photos[0]
+                            ?: throw java.lang.IllegalStateException("Image can't be null")))
+
+        }
+    }
+
     fun convertToDifferentFormatDate(dateString: String?): String? {
         return try {
-            val inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            val date = LocalDate.parse(dateString, inputFormatter)
-            date.format(DateTimeFormatter.ISO_LOCAL_DATE)
+            if (dateString.isNullOrEmpty()) return null
+
+            val formats = listOf(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+                DateTimeFormatter.ofPattern("d/M/yyyy"),
+                DateTimeFormatter.ofPattern("dd/M/yyyy"),
+                DateTimeFormatter.ofPattern("d/MM/yyyy")
+            )
+
+            var parsedDate: LocalDate? = null
+            for (format in formats) {
+                try {
+                    parsedDate = LocalDate.parse(dateString, format)
+                    break
+                } catch (e: DateTimeParseException) {
+
+                }
+            }
+
+            parsedDate?.format(DateTimeFormatter.ISO_LOCAL_DATE)
         } catch (e: Exception) {
             null
         }
@@ -287,8 +327,10 @@ class ThirdSignUpFragment : Fragment() {
 
     private fun savePhoto(uri: Uri) {
         if (curPhoto.equals("license")) {
+            photos[1] = uri
             licensePhoto = true
         } else if (curPhoto.equals("passport")) {
+            photos[2] = uri
             passportPhoto = true
         } else {
             val image: ImageView = binding.ivUserPhoto
@@ -296,6 +338,7 @@ class ThirdSignUpFragment : Fragment() {
                 .load(uri)
                 .circleCrop()
                 .into(image)
+            photos[0] = uri
         }
     }
 
