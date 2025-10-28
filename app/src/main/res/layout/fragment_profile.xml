@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tw_title"
-        style="@style/TextViewStyleH1"
+        style="@style/TextViewStyleSettingsLabels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -54,8 +54,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_semi_bold"
         android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         android:text="Name"
-        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_photo" />
@@ -64,9 +65,10 @@
         android:id="@+id/tw_created_at"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/montserrat_regular"
         android:text="CreatedAt"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_name" />
@@ -92,6 +94,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_email_label"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D0D5DD"
+        app:layout_constraintTop_toBottomOf="@id/tw_email_value"/>
+
     <TextView
         android:id="@+id/tw_password_label"
         android:layout_width="wrap_content"
@@ -113,8 +121,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_password_label"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D0D5DD"
+        app:layout_constraintTop_toBottomOf="@id/tw_password_value"/>
+
     <TextView
-        android:id="@+id/tw_sex_label"
+        android:id="@+id/tw_gender_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyleProfileElements"
@@ -125,14 +139,20 @@
         app:layout_constraintTop_toBottomOf="@+id/tw_password_value" />
 
     <TextView
-        android:id="@+id/tw_sex_value"
+        android:id="@+id/tw_gender_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyleH2Gray"
         android:text="Пол"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tw_sex_label"/>
+        app:layout_constraintTop_toBottomOf="@+id/tw_gender_label"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D0D5DD"
+        app:layout_constraintTop_toBottomOf="@id/tw_gender_value"/>
 
     <TextView
         android:id="@+id/tw_google_label"
@@ -143,7 +163,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tw_sex_value" />
+        app:layout_constraintTop_toBottomOf="@+id/tw_gender_value" />
 
     <TextView
         android:id="@+id/tw_google_value"
@@ -154,6 +174,12 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_google_label"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D0D5DD"
+        app:layout_constraintTop_toBottomOf="@id/tw_google_value"/>
 
     <TextView
         android:id="@+id/tw_exit"
@@ -166,48 +192,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_google_value" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="30dp">
+        app:itemIconSize="30dp"
+        app:menu="@menu/menu"
+        >
 
-        <ImageButton
-            android:id="@+id/btn_main"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/img_home"
-            android:layout_marginStart="60dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageButton
-            android:id="@+id/btn_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/img_favorites"
-            app:layout_constraintEnd_toStartOf="@+id/btn_settings"
-            app:layout_constraintStart_toEndOf="@+id/btn_main"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <ImageButton
-            android:id="@+id/btn_settings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="60dp"
-            android:src="@drawable/img_settings"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 
