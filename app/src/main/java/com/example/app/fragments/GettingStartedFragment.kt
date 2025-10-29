@@ -39,7 +39,7 @@ class GettingStartedFragment : Fragment() {
 //        }
         val buttonSignUp: MaterialButton = binding.btnSignUp
         buttonSignUp.setOnClickListener {
-            activity?.changeFragment(ThirdSignUpFragment.newInstance(),
+            activity?.changeFragment(FirstSignUpFragment.newInstance(),
                 R.id.cl_getting_started, "getting_start")
         }
         return binding.root

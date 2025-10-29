@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentSignUp1Binding
+import com.example.app.servicies.HashPassword
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.text.Regex
@@ -43,9 +44,8 @@ class FirstSignUpFragment : Fragment() {
                     "firstPage",
                     bundleOf(
                         "email" to binding.etMail.text.toString(),
-                                "password" to hashPassword(
-                                    binding.etRepeatPassword.text.toString(),
-                                    generateRandomSalt())
+                                "password" to HashPassword.newInstance().hashPassword(
+                                    binding.etRepeatPassword.text.toString())
                         )
                 )
 
@@ -145,20 +145,20 @@ class FirstSignUpFragment : Fragment() {
         }
     }
 
-    fun generateRandomSalt(): ByteArray {
-        val salt = ByteArray(16)
-        SecureRandom().nextBytes(salt)
-        return salt
-    }
-
-    fun hashPassword(password: String, salt: ByteArray): String {
-        val spec = PBEKeySpec(password.toCharArray(), salt,
-            65536, 256)
-        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
-        val hash = factory.generateSecret(spec).encoded
-
-        return Base64.getEncoder().encodeToString(salt + hash)
-    }
+//    fun generateRandomSalt(): ByteArray {
+//        val salt = ByteArray(16)
+//        SecureRandom().nextBytes(salt)
+//        return salt
+//    }
+//
+//    fun hashPassword(password: String, salt: ByteArray): String {
+//        val spec = PBEKeySpec(password.toCharArray(), salt,
+//            65536, 256)
+//        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+//        val hash = factory.generateSecret(spec).encoded
+//
+//        return Base64.getEncoder().encodeToString(salt + hash)
+//    }
 
     companion object {
         @JvmStatic

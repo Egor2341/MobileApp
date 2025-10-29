@@ -25,6 +25,9 @@ import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import androidx.lifecycle.lifecycleScope
+import com.example.app.fragments.settings.SettingsFragment
+import com.example.app.servicies.HashPassword
+import com.example.app.servicies.SignIn
 import kotlinx.coroutines.launch
 
 class SignInFragment : Fragment() {
@@ -47,9 +50,20 @@ class SignInFragment : Fragment() {
 
         val btnSignIn: MaterialButton = binding.btnSignin
         btnSignIn.setOnClickListener {
-            if (checkFields()) {
+//            if (checkFields()) {
+                lifecycleScope.launch {
+                    val user = SignIn.newInstance().signIn(binding.etEmail.text.toString(),
+                        binding.etPassword.text.toString())
+                    if (user == null) {
+                        binding.tvError.setText("Пользователь не найден")
+                    } else {
+                        binding.tvError.setText("")
+                        activity?.changeFragment(SettingsFragment.newInstance(),
+                            R.id.cl_sign_in)
 
-            }
+                    }
+                }
+//            }
         }
 
         val buttonSignUp: MaterialButton = binding.btnSignUp

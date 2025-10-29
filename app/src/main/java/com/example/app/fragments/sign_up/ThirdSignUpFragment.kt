@@ -97,32 +97,32 @@ class ThirdSignUpFragment : Fragment() {
         btnNext.setOnClickListener {
 //            if (checkFields()) {
 
-//                val email = firstPage.getString("email")
-//                    ?: throw java.lang.IllegalStateException("email can't be null")
-//                val user = User(
-//                    email,
-//                    firstPage.getString("password")
-//                        ?: throw java.lang.IllegalStateException("email can't be null"),
-//                    secondPage.getString("lastName")
-//                        ?: throw java.lang.IllegalStateException("lastName can't be null"),
-//                    secondPage.getString("firstName")
-//                        ?: throw java.lang.IllegalStateException("firstName can't be null"),
-//                    secondPage.getString("patronymic")
-//                        ?: throw java.lang.IllegalStateException("patronymic can't be null"),
-//                    convertToDifferentFormatDate(secondPage.getString("dob"))
-//                        ?: throw java.lang.IllegalStateException("dob can't be null"),
-//                    secondPage.getString("gender")
-//                        ?: throw java.lang.IllegalStateException("gender can't be null"),
-//                    binding.etLicenseNumber.text.toString(),
-//                    convertToDifferentFormatDate(binding.etDate.text.toString())
-//                        ?: throw java.lang.IllegalStateException("licenseDate can't be null")
-//                )
+                val email = firstPage.getString("email")
+                    ?: throw java.lang.IllegalStateException("email can't be null")
+                val user = User(
+                    email,
+                    firstPage.getString("password")
+                        ?: throw java.lang.IllegalStateException("email can't be null"),
+                    secondPage.getString("lastName")
+                        ?: throw java.lang.IllegalStateException("lastName can't be null"),
+                    secondPage.getString("firstName")
+                        ?: throw java.lang.IllegalStateException("firstName can't be null"),
+                    secondPage.getString("patronymic")
+                        ?: throw java.lang.IllegalStateException("patronymic can't be null"),
+                    convertToDifferentFormatDate(secondPage.getString("dob"))
+                        ?: throw java.lang.IllegalStateException("dob can't be null"),
+                    secondPage.getString("gender")
+                        ?: throw java.lang.IllegalStateException("gender can't be null"),
+                    binding.etLicenseNumber.text.toString(),
+                    convertToDifferentFormatDate(binding.etDate.text.toString())
+                        ?: throw java.lang.IllegalStateException("licenseDate can't be null")
+                )
 
-//                lifecycleScope.launch {
-//                    Insert.newInstance().insertData("users", user)
-//                }
+                lifecycleScope.launch {
+                    Insert.newInstance().insertData("users", user)
+                }
 
-                uploadImages("test")
+//                uploadImages("test")
 
                 activity?.changeFragment(
                     CongratulationsFragment.newInstance(),
