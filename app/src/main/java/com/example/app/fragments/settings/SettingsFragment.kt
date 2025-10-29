@@ -5,13 +5,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.data.User
 import com.example.app.databinding.FragmentSettingsBinding
 import com.example.app.databinding.FragmentSignUp1Binding
 import com.example.app.fragments.sign_up.FirstSignUpFragment
+import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment() {
 
@@ -34,6 +39,14 @@ class SettingsFragment : Fragment() {
 
             binding.twSettingsName.setText(name)
             binding.twSettingsEmail.setText(activity.getUser().email)
+
+            Glide.with(requireContext())
+                .load(activity.getUser().avatar.toUri())
+                .circleCrop()
+                .into(binding.ivUserPhoto)
+
+
+
         }
 
 

@@ -26,6 +26,7 @@ class SignIn {
                         "gender",
                         "license_number",
                         "license_date",
+                        "avatar",
                         "created_at"
                     )
                 ) {
@@ -35,16 +36,19 @@ class SignIn {
                 }.decodeSingleOrNull<User>()
 
             if (user == null) {
+                Log.d("SIGNIN", "not user")
                 return null
             }
 
             if (HashPassword.newInstance().checkPassword(password, user.password)) {
                 return user
             } else {
+                Log.d("SIGNIN", "not password")
                 return null
             }
 
         } catch (e: Exception) {
+            Log.d("SIGNIN", e.message.toString())
             return null
         }
 

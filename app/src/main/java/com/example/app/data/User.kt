@@ -13,5 +13,6 @@ data class User (
     val gender: String,
     val license_number: String,
     val license_date: String,
+    val avatar: String,
     val created_at: String? = null
 ) : Data

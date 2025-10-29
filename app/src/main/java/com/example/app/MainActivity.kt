@@ -3,20 +3,26 @@ package com.example.app
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import com.example.app.data.User
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
-import io.github.cdimascio.dotenv.Dotenv
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
@@ -28,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     val TOKEN = stringPreferencesKey("token")
     val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
+    val AVATAR_URI = stringPreferencesKey("avatar")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,11 +130,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setUser(data: User){
+    fun setUser(data: User) {
         user = data
     }
 
-    fun getUser() : User{
+    fun getUser(): User {
         return user
     }
 }
