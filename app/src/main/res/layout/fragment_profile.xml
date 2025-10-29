@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".fragments.settings.ProfileFragment"
     android:background="@color/white">
 
     <TextView
@@ -67,9 +68,10 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
         android:text="CreatedAt"
-        android:textSize="14sp"
         android:textColor="@color/text_color"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_name" />
 
@@ -143,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyleH2Gray"
-        android:text="Пол"
+        android:text=""
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_gender_label"/>
@@ -170,7 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyleH2Gray"
-        android:text="example@gmail.com"
+        android:text=""
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_google_label"/>
@@ -193,6 +195,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tw_google_value" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
