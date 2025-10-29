@@ -55,19 +55,23 @@ class SignInFragment : Fragment() {
             lifecycleScope.launch {
                 val user = SignIn.newInstance().signIn(
                     binding.etEmail.text.toString(),
-                    binding.etPassword.text.toString()
+                    binding.etPassword.text.toString(),
+                            false
                 )
                 if (user == null) {
                     binding.tvError.setText("Пользователь не найден")
                 } else {
-                        activity?.setUser(user)
+                    activity?.setUser(user)
 
                     binding.tvError.setText("")
+
 
                     activity?.changeFragment(
                         SettingsFragment.newInstance(),
                         R.id.cl_sign_in
                     )
+
+                    activity?.signIn(user.email, user.password)
                 }
             }
 //            }

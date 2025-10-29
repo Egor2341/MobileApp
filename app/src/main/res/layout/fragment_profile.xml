@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ic_profile"
+    android:id="@+id/cl_profile"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -183,10 +183,12 @@
         android:background="#D0D5DD"
         app:layout_constraintTop_toBottomOf="@id/tw_google_value"/>
 
-    <TextView
-        android:id="@+id/tw_exit"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        app:cornerRadius="0dp"
         style="@style/TextViewStyleProfileElements"
         android:text="Выйти из профиля"
         android:layout_marginTop="20dp"

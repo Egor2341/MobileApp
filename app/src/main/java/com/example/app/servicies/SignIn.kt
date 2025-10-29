@@ -10,7 +10,7 @@ import com.example.app.R
 
 class SignIn {
 
-    suspend inline fun signIn(login: String, password: String): User? {
+    suspend inline fun signIn(login: String, password: String, hash: Boolean): User? {
 
         try {
             val user = Base.newInstance().getClient()
@@ -32,18 +32,21 @@ class SignIn {
                 ) {
                     filter {
                         User::email eq login
+                        if (hash){
+                            User::password eq password
+                        }
                     }
                 }.decodeSingleOrNull<User>()
 
             if (user == null) {
-                Log.d("SIGNIN", "not user")
+                Log.d("SIGNIN", "non user")
                 return null
             }
 
-            if (HashPassword.newInstance().checkPassword(password, user.password)) {
+            if (hash || HashPassword.newInstance().checkPassword(password, user.password)) {
                 return user
             } else {
-                Log.d("SIGNIN", "not password")
+                Log.d("SIGNIN", "non password")
                 return null
             }
 

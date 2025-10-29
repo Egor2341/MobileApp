@@ -11,6 +11,7 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileBinding
 import com.example.app.databinding.FragmentSettingsBinding
+import com.example.app.fragments.GettingStartedFragment
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -46,6 +47,14 @@ class ProfileFragment : Fragment() {
 
         val menu = binding.bnvMenu
         menu.menu.findItem(R.id.btnm_settings).setIcon(R.drawable.ic_settings2)
+
+        binding.btnSignOut.setOnClickListener {
+            activity?.signOut()
+            activity?.changeFragment(
+                GettingStartedFragment.newInstance(),
+                R.id.cl_profile
+            )
+        }
 
         return binding.root
     }

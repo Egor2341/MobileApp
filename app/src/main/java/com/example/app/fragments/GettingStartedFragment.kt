@@ -32,11 +32,7 @@ class GettingStartedFragment : Fragment() {
             activity?.changeFragment(SignInFragment.newInstance(),
                 R.id.cl_getting_started)
         }
-//        val buttonSignUp: MaterialButton = binding.btnSignUp
-//        buttonSignUp.setOnClickListener {
-//            activity?.changeFragment(FirstSignUpFragment.newInstance(),
-//                R.id.cl_getting_started, "getting_start")
-//        }
+
         val buttonSignUp: MaterialButton = binding.btnSignUp
         buttonSignUp.setOnClickListener {
             activity?.changeFragment(FirstSignUpFragment.newInstance(),

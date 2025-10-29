@@ -3,27 +3,24 @@ package com.example.app
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import com.example.app.data.User
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
+import com.example.app.fragments.settings.SettingsFragment
+import com.example.app.servicies.SignIn
 import kotlinx.coroutines.launch
+import kotlin.math.sign
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,13 +31,12 @@ class MainActivity : AppCompatActivity() {
 
     val TOKEN = stringPreferencesKey("token")
     val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
-    val AVATAR_URI = stringPreferencesKey("avatar")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
         var screen = 0
+
 
         // Для сброса IS_FIRST_TIME
 //        lifecycleScope.launch {
@@ -57,15 +53,10 @@ class MainActivity : AppCompatActivity() {
                 val isFirstTime = prefs[IS_FIRST_TIME] ?: true
 
                 if (isFirstTime) {
-                    val newToken = "token_${System.currentTimeMillis()}"
                     screen = 1
-                    dataStore.updateData { currentPrefs ->
-                        val mutable = currentPrefs.toMutablePreferences()
-                        mutable[TOKEN] = newToken
-                        mutable[IS_FIRST_TIME] = false
-                        mutable
-                    }
                 }
+
+                val token = prefs[TOKEN] ?: ""
 
 //                 Для проверки Onboarding
 //                supportFragmentManager
@@ -79,12 +70,30 @@ class MainActivity : AppCompatActivity() {
                         .replace(R.id.splash_screen, FirstOnboardingFragment.newInstance())
                         .addToBackStack(null)
                         .commit()
-                } else {
+                } else if (token.isEmpty()) {
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
                         .addToBackStack(null)
                         .commit()
+                } else {
+                    val splitToken = token.split("_")
+                    val user =
+                        SignIn.newInstance().signIn(splitToken.get(0), splitToken.get(1), true)
+                    if (user != null) {
+                        setUser(user)
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.splash_screen, SettingsFragment.newInstance())
+                            .addToBackStack(null)
+                            .commit()
+                    }
+//                    else {
+//                        supportFragmentManager
+//                            .beginTransaction()
+//                            .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
+//                            .addToBackStack(null)
+//                            .commit()
                 }
             }
         }
@@ -137,4 +146,29 @@ class MainActivity : AppCompatActivity() {
     fun getUser(): User {
         return user
     }
+
+    fun signIn(email: String, password: String) {
+        Log.d("SIGNIN", email)
+        Log.d("SIGNIN", password)
+        lifecycleScope.launch {
+            val newToken = email + "_" + password
+            dataStore.updateData { currentPrefs ->
+                val mutable = currentPrefs.toMutablePreferences()
+                mutable[TOKEN] = newToken
+                mutable
+            }
+        }
+    }
+
+    fun signOut() {
+        lifecycleScope.launch {
+            val newToken = ""
+            dataStore.updateData { currentPrefs ->
+                val mutable = currentPrefs.toMutablePreferences()
+                mutable[TOKEN] = newToken
+                mutable
+            }
+        }
+    }
+
 }
