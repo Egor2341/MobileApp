@@ -3,10 +3,10 @@ package com.example.app.servicies
 import android.util.Log
 import com.example.app.data.Base
 import com.example.app.data.User
-import com.example.app.fragments.settings.SettingsFragment
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Columns
 import kotlin.String
+import com.example.app.R
 
 class SignIn {
 

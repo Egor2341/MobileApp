@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -51,25 +52,33 @@ class SignInFragment : Fragment() {
         val btnSignIn: MaterialButton = binding.btnSignin
         btnSignIn.setOnClickListener {
 //            if (checkFields()) {
-                lifecycleScope.launch {
-                    val user = SignIn.newInstance().signIn(binding.etEmail.text.toString(),
-                        binding.etPassword.text.toString())
-                    if (user == null) {
-                        binding.tvError.setText("Пользователь не найден")
-                    } else {
-                        binding.tvError.setText("")
-                        activity?.changeFragment(SettingsFragment.newInstance(),
-                            R.id.cl_sign_in)
+            lifecycleScope.launch {
+                val user = SignIn.newInstance().signIn(
+                    binding.etEmail.text.toString(),
+                    binding.etPassword.text.toString()
+                )
+                if (user == null) {
+                    binding.tvError.setText("Пользователь не найден")
+                } else {
+                        activity?.setUser(user)
 
-                    }
+                    binding.tvError.setText("")
+
+                    activity?.changeFragment(
+                        SettingsFragment.newInstance(),
+                        R.id.cl_sign_in
+                    )
                 }
+            }
 //            }
         }
 
         val buttonSignUp: MaterialButton = binding.btnSignUp
         buttonSignUp.setOnClickListener {
-            activity?.changeFragment(FirstSignUpFragment.newInstance(),
-                R.id.cl_sign_in, "sign_in")
+            activity?.changeFragment(
+                FirstSignUpFragment.newInstance(),
+                R.id.cl_sign_in, "sign_in"
+            )
         }
 
         val btnSignIngGoogle = binding.btnGoogleSignInButton
@@ -132,10 +141,12 @@ class SignInFragment : Fragment() {
             !validateEmail() -> {
                 false
             }
+
             binding.etPassword.text.toString().isEmpty() -> {
                 binding.etPassword.error = "Обязательное поле"
                 false
             }
+
             else -> {
                 binding.etPassword.error = null
                 true
@@ -143,7 +154,7 @@ class SignInFragment : Fragment() {
         }
     }
 
-    fun validateEmail() : Boolean {
+    fun validateEmail(): Boolean {
         val emailPattern = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
         val email: TextInputEditText = binding.etEmail
         if (!emailPattern.matches(email.text.toString())) {

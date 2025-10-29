@@ -12,6 +12,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.app.data.User
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
@@ -22,6 +23,8 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_settings")
+
+    private lateinit var user: User
 
     val TOKEN = stringPreferencesKey("token")
     val IS_FIRST_TIME = booleanPreferencesKey("is_first_time")
@@ -117,5 +120,13 @@ class MainActivity : AppCompatActivity() {
         } else {
             noConFragment(id)
         }
+    }
+
+    fun setUser(data: User){
+        user = data
+    }
+
+    fun getUser() : User{
+        return user
     }
 }
