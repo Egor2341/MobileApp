@@ -88,12 +88,6 @@ class MainActivity : AppCompatActivity() {
                             .addToBackStack(null)
                             .commit()
                     }
-//                    else {
-//                        supportFragmentManager
-//                            .beginTransaction()
-//                            .replace(R.id.splash_screen, GettingStartedFragment.newInstance())
-//                            .addToBackStack(null)
-//                            .commit()
                 }
             }
         }
