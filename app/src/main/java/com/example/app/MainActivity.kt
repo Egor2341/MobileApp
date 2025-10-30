@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.data.User
 import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
+import com.example.app.fragments.homepage.HomepageFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
 import com.example.app.fragments.settings.SettingsFragment
 import com.example.app.servicies.SignIn
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                         setUser(user)
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(R.id.splash_screen, SettingsFragment.newInstance())
+                            .replace(R.id.splash_screen, HomepageFragment.newInstance())
                             .addToBackStack(null)
                             .commit()
                     }

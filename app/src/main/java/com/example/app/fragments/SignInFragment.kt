@@ -26,6 +26,7 @@ import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import androidx.lifecycle.lifecycleScope
+import com.example.app.fragments.homepage.HomepageFragment
 import com.example.app.fragments.settings.SettingsFragment
 import com.example.app.servicies.HashPassword
 import com.example.app.servicies.SignIn
@@ -67,7 +68,7 @@ class SignInFragment : Fragment() {
 
 
                     activity?.changeFragment(
-                        SettingsFragment.newInstance(),
+                        HomepageFragment.newInstance(),
                         R.id.cl_sign_in
                     )
 
