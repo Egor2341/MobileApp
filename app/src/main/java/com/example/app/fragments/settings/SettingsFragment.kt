@@ -1,6 +1,7 @@
 package com.example.app.fragments.settings
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentSettingsBinding
+import com.example.app.fragments.homepage.HomepageFragment
 
 class SettingsFragment : Fragment() {
 
@@ -47,8 +49,6 @@ class SettingsFragment : Fragment() {
             )
         }
 
-        val menu = binding.bnvMenu
-        menu.menu.findItem(R.id.btnm_settings).setIcon(R.drawable.ic_settings2)
 
         return binding.root
     }
