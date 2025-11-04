@@ -35,7 +35,7 @@ class SecondSignUpFragment : Fragment() {
 
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-//            if (checkFields()) {
+            if (checkFields()) {
                 var gender: String
                 if (binding.btnMan.isChecked){
                     gender = binding.btnMan.text.toString()
@@ -57,7 +57,7 @@ class SecondSignUpFragment : Fragment() {
                     ThirdSignUpFragment.newInstance(),
                     R.id.cl_sign_up2, "second_signup"
                 )
-//            }
+            }
         }
 
         val btnBack: MaterialButton = binding.btnBack

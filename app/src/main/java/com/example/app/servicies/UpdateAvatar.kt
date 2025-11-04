@@ -1,13 +1,12 @@
 package com.example.app.servicies
 
-import android.util.Log
 import com.example.app.data.Base
 import io.github.jan.supabase.postgrest.from
 
-class UpdateAvatar {
+object UpdateAvatar {
     suspend inline fun update(uri: String, email: String): String {
         return try {
-            Base.newInstance().getClient().from("users").update(
+            Base.getClient().from("users").update(
                 {
                     set("avatar", uri)
                 }
@@ -23,8 +22,4 @@ class UpdateAvatar {
 
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = UpdateAvatar()
-    }
 }

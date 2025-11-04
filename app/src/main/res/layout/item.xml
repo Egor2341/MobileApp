@@ -33,6 +33,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tw_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
@@ -46,6 +47,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/tw_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_semi_bold"
@@ -55,6 +57,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tw_period"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -77,6 +80,7 @@
                         android:src="@drawable/img_gearbox"/>
 
                     <TextView
+                        android:id="@+id/tw_gearbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -94,6 +98,7 @@
                         android:src="@drawable/ic_fuel" />
 
                     <TextView
+                        android:id="@+id/tw_fuel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"

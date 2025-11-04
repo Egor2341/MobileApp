@@ -11,9 +11,7 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.data.Cars
 import com.example.app.databinding.FragmentHomepageBinding
-import com.example.app.databinding.FragmentSignUp1Binding
 import com.example.app.fragments.settings.SettingsFragment
-import com.example.app.fragments.sign_up.FirstSignUpFragment
 
 class HomepageFragment : Fragment() {
 

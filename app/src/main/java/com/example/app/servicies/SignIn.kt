@@ -1,19 +1,18 @@
 package com.example.app.servicies
 
 import android.util.Log
-import com.example.app.data.Base
 import com.example.app.data.User
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Columns
 import kotlin.String
-import com.example.app.R
+import com.example.app.data.Base
 
-class SignIn {
+object SignIn {
 
     suspend inline fun signIn(login: String, password: String, hash: Boolean): User? {
 
         try {
-            val user = Base.newInstance().getClient()
+            val user = Base.getClient()
                 .from("users")
                 .select(
                     columns = Columns.list(
@@ -43,7 +42,7 @@ class SignIn {
                 return null
             }
 
-            if (hash || HashPassword.newInstance().checkPassword(password, user.password)) {
+            if (hash || HashPassword.checkPassword(password, user.password)) {
                 return user
             } else {
                 Log.d("SIGNIN", "non password")
@@ -56,11 +55,5 @@ class SignIn {
         }
 
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = SignIn()
-    }
-
 
 }

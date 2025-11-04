@@ -39,12 +39,12 @@ class FirstSignUpFragment : Fragment() {
 
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-//            if (checkFields()) {
+            if (checkFields()) {
                 parentFragmentManager.setFragmentResult(
                     "firstPage",
                     bundleOf(
                         "email" to binding.etMail.text.toString(),
-                                "password" to HashPassword.newInstance().hashPassword(
+                                "password" to HashPassword.hashPassword(
                                     binding.etRepeatPassword.text.toString())
                         )
                 )
@@ -55,7 +55,7 @@ class FirstSignUpFragment : Fragment() {
                 )
 
             }
-//        }
+        }
         val btnBack: MaterialButton = binding.btnBack
         btnBack.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -144,21 +144,6 @@ class FirstSignUpFragment : Fragment() {
             }
         }
     }
-
-//    fun generateRandomSalt(): ByteArray {
-//        val salt = ByteArray(16)
-//        SecureRandom().nextBytes(salt)
-//        return salt
-//    }
-//
-//    fun hashPassword(password: String, salt: ByteArray): String {
-//        val spec = PBEKeySpec(password.toCharArray(), salt,
-//            65536, 256)
-//        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
-//        val hash = factory.generateSecret(spec).encoded
-//
-//        return Base64.getEncoder().encodeToString(salt + hash)
-//    }
 
     companion object {
         @JvmStatic

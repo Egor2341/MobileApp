@@ -145,7 +145,7 @@ class ProfileFragment : Fragment() {
             .into(image)
 
         lifecycleScope.launch {
-            val res = UpdateAvatar.newInstance()
+            val res = UpdateAvatar
                 .update(uri.toString(), binding.twEmailValue.text.toString())
         }
     }

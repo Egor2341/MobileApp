@@ -1,13 +1,10 @@
 package com.example.app.fragments
 
-import android.app.Activity.RESULT_OK
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.os.bundleOf
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -18,17 +15,13 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentSignInBinding
 import com.example.app.fragments.sign_up.FirstSignUpFragment
-import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import androidx.lifecycle.lifecycleScope
 import com.example.app.fragments.homepage.HomepageFragment
-import com.example.app.fragments.settings.SettingsFragment
-import com.example.app.servicies.HashPassword
 import com.example.app.servicies.SignIn
 import kotlinx.coroutines.launch
 
@@ -52,30 +45,30 @@ class SignInFragment : Fragment() {
 
         val btnSignIn: MaterialButton = binding.btnSignin
         btnSignIn.setOnClickListener {
-//            if (checkFields()) {
-            lifecycleScope.launch {
-                val user = SignIn.newInstance().signIn(
-                    binding.etEmail.text.toString(),
-                    binding.etPassword.text.toString(),
-                            false
-                )
-                if (user == null) {
-                    binding.tvError.setText("Пользователь не найден")
-                } else {
-                    activity?.setUser(user)
-
-                    binding.tvError.setText("")
-
-
-                    activity?.changeFragment(
-                        HomepageFragment.newInstance(),
-                        R.id.cl_sign_in
+            if (checkFields()) {
+                lifecycleScope.launch {
+                    val user = SignIn.signIn(
+                        binding.etEmail.text.toString(),
+                        binding.etPassword.text.toString(),
+                        false
                     )
+                    if (user == null) {
+                        binding.tvError.setText("Пользователь не найден")
+                    } else {
+                        activity?.setUser(user)
 
-                    activity?.signIn(user.email, user.password)
+                        binding.tvError.setText("")
+
+
+                        activity?.changeFragment(
+                            HomepageFragment.newInstance(),
+                            R.id.cl_sign_in
+                        )
+
+                        activity?.signIn(user.email, user.password)
+                    }
                 }
             }
-//            }
         }
 
         val buttonSignUp: MaterialButton = binding.btnSignUp

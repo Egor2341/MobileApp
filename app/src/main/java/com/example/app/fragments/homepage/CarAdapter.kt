@@ -1,19 +1,22 @@
 package com.example.app.fragments.homepage
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app.data.Car
 import com.example.app.databinding.ItemBinding
-import kotlin.collections.get
 
 class CarAdapter(private val cars: MutableList<Car>):
     RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
     class ViewHolder(binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val type: TextView = binding.twType
+        val model: TextView = binding.twModel
+        val price: TextView = binding.twPrice
+        val period: TextView = binding.twPeriod
+        val gearbox: TextView = binding.twGearbox
+        val fuel: TextView = binding.twFuel
     }
 
 
@@ -26,7 +29,13 @@ class CarAdapter(private val cars: MutableList<Car>):
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        val price = cars[position].price.toString() + "₽"
         viewHolder.type.text = cars[position].type
+        viewHolder.model.text = cars[position].model
+        viewHolder.price.text = price
+        viewHolder.period.text = cars[position].period
+        viewHolder.gearbox.text = cars[position].gearbox
+        viewHolder.fuel.text = cars[position].fuel
     }
 
     override fun getItemCount() = cars.size

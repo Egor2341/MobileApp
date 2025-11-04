@@ -6,7 +6,7 @@ import java.util.Base64
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
-class HashPassword {
+object HashPassword {
 
     private fun generateRandomSalt(): ByteArray {
         val salt = ByteArray(16)
@@ -42,12 +42,6 @@ class HashPassword {
         } catch (e: Exception) {
             false
         }
-    }
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = HashPassword()
     }
 
 }

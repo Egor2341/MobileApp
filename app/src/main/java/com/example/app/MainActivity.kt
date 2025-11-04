@@ -18,10 +18,8 @@ import com.example.app.fragments.GettingStartedFragment
 import com.example.app.fragments.NoConnectionFragment
 import com.example.app.fragments.homepage.HomepageFragment
 import com.example.app.fragments.onboarding.FirstOnboardingFragment
-import com.example.app.fragments.settings.SettingsFragment
 import com.example.app.servicies.SignIn
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 
 class MainActivity : AppCompatActivity() {
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val splitToken = token.split("_")
                     val user =
-                        SignIn.newInstance().signIn(splitToken.get(0), splitToken.get(1), true)
+                        SignIn.signIn(splitToken.get(0), splitToken.get(1), true)
                     if (user != null) {
                         setUser(user)
                         supportFragmentManager

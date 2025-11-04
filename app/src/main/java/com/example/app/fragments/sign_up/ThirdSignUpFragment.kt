@@ -95,7 +95,7 @@ class ThirdSignUpFragment : Fragment() {
 
         val btnNext: MaterialButton = binding.btnNext
         btnNext.setOnClickListener {
-//            if (checkFields()) {
+            if (checkFields()) {
 
             val email = firstPage.getString("email")
                 ?: throw java.lang.IllegalStateException("email can't be null")
@@ -120,18 +120,19 @@ class ThirdSignUpFragment : Fragment() {
             )
 
             lifecycleScope.launch {
-                Insert.newInstance().insertData("users", user)
+                Insert.insertData("users", user)
             }
 
 //                uploadImages("test")
 
+                activity?.setUser(user)
 
             activity?.changeFragment(
                 CongratulationsFragment.newInstance(),
                 R.id.cl_sign_up3
             )
 
-//            }
+            }
         }
 
         val btnBack: MaterialButton = binding.btnBack
@@ -209,7 +210,7 @@ class ThirdSignUpFragment : Fragment() {
 //                    )
 //                )
 //            }
-            UserImages.newInstance().uploadImage(
+            UserImages.uploadImage(
                 email,
                 uriToByteArray(
                     photos[0]

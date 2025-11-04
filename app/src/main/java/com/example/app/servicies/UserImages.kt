@@ -4,7 +4,7 @@ import com.example.app.data.Base
 import io.github.jan.supabase.storage.storage
 import java.util.UUID
 
-class UserImages {
+object UserImages {
 
     suspend fun uploadImage(email: String, img: ByteArray): String {
         return try {
@@ -12,7 +12,7 @@ class UserImages {
             val fileName = "${UUID.randomUUID()}"
             val storagePath = "$email/$fileName"
 
-            Base.newInstance().getClient()
+            Base.getClient()
                 .storage
                 .from("Images")
                 .upload(storagePath, img, upsert = true)
@@ -22,8 +22,4 @@ class UserImages {
         }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = UserImages()
-    }
 }
