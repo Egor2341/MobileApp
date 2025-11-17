@@ -13,6 +13,12 @@
         <item name="android:textColor">@color/text_color</item>
     </style>
 
+    <style name="TextViewStyleH1.5" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
     <style name="TextViewStyleH2Gray" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/montserrat_regular</item>
         <item name="android:textSize">14sp</item>
@@ -42,7 +48,7 @@
         <item name="android:textColor">@color/settings_elements</item>
     </style>
 
-    <style name="TextViewStyleProfileElements" parent="TextAppearance.AppCompat">
+    <style name="TextViewStyleMedium" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/montserrat_semi_bold</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/text_color</item>
