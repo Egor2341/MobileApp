@@ -1,9 +1,11 @@
 package com.example.app.fragments.homepage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,8 +14,9 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentHomepageBinding
 import com.example.app.fragments.settings.SettingsFragment
-import com.example.app.servicies.AllCars
+import com.example.app.servicies.Cars
 import kotlinx.coroutines.launch
+import kotlin.toString
 
 class HomepageFragment : Fragment() {
 
@@ -34,7 +37,24 @@ class HomepageFragment : Fragment() {
         val recyclerView: RecyclerView = binding.rwList
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         lifecycleScope.launch {
-            recyclerView.adapter = CarAdapter(AllCars.getCars())
+            recyclerView.adapter = CarAdapter(
+                Cars.getCars(),
+                onBookClick = {
+                    activity?.changeFragment(SettingsFragment.newInstance(), R.id.cl_homepage)
+                },
+                onDetailClick = { car ->
+                    parentFragmentManager.setFragmentResult(
+                        "details",
+                        bundleOf(
+                            "type" to car.type,
+                            "model" to car.model,
+                            "address" to car.address,
+                            "description" to car.description,
+                            "price" to car.price
+                        )
+                    )
+                    activity?.changeFragment(DetailsFragment.newInstance(), R.id.cl_homepage)
+                })
         }
 
         val menu = binding.bnvMenu
@@ -49,9 +69,11 @@ class HomepageFragment : Fragment() {
                     )
                     true
                 }
+
                 R.id.btnm_favorites -> {
                     true
                 }
+
                 R.id.btnm_settings -> {
                     menu.menu.findItem(R.id.btnm_main).setIcon(R.drawable.ic_main1)
                     menu.menu.findItem(R.id.btnm_settings).setIcon(R.drawable.ic_settings2)
@@ -61,6 +83,7 @@ class HomepageFragment : Fragment() {
                     )
                     true
                 }
+
                 else -> false
             }
         }

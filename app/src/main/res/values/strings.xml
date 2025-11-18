@@ -19,5 +19,9 @@
     <string name="rent">Аренда</string>
     <string name="insurance">Страховка</string>
     <string name="total">Общая сумма</string>
+    <string name="name">name</string>
+    <string name="address">address</string>
+    <string name="description">description</string>
+    <string name="price">price</string>
 
 </resources>
