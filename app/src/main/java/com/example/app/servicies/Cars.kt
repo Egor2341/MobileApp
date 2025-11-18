@@ -23,11 +23,7 @@ object Cars {
                         "fuel",
                         "insurance"
                     )
-                ){
-                    filter {
-                        exact("booking_id", null)
-                    }
-                }
+                )
                 .decodeList<Car>()
 
             return cars

@@ -10,8 +10,6 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentDetailsBinding
 import com.example.app.servicies.Fav
-import com.example.app.servicies.Insert
-import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {

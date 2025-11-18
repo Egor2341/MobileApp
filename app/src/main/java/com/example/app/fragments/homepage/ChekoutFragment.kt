@@ -3,22 +3,19 @@ package com.example.app.fragments.homepage
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.app.MainActivity
 import com.example.app.R
+import com.example.app.data.Booking
 import com.example.app.databinding.FragmentCheckoutBinding
-import com.google.android.material.datepicker.MaterialDatePicker
-import kotlinx.datetime.LocalDateTime
+import com.example.app.servicies.Insert
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 import java.time.temporal.ChronoUnit
 import java.util.Calendar
 import java.util.Date
@@ -34,6 +31,10 @@ class ChekoutFragment : Fragment() {
     private var endDateTime = java.time.LocalDateTime.now()
     private var rentPrice: Int = 0
     private var insurancePrice: Int = 0
+
+    private var startDate: String = ""
+    private var endDate: String = ""
+    private var carId: Int = 0
 
 
     override fun onCreateView(
@@ -60,8 +61,8 @@ class ChekoutFragment : Fragment() {
                     startDateTime = selectedCalendar.toInstant()
                         .atZone(ZoneId.systemDefault())
                         .toLocalDateTime()
-                    val formattedDate = formatDateTimeWithCalendar(selectedCalendar.time)
-                    rentStart.text = formattedDate
+                    startDate = formatDateTimeWithCalendar(selectedCalendar.time)
+                    rentStart.text = startDate
                 } else {
                     binding.tvError.text = "Некорректная дата"
                 }
@@ -77,8 +78,8 @@ class ChekoutFragment : Fragment() {
                     endDateTime = selectedCalendar.toInstant()
                         .atZone(ZoneId.systemDefault())
                         .toLocalDateTime()
-                    val formattedDate = formatDateTimeWithCalendar(selectedCalendar.time)
-                    rentEnd.text = formattedDate
+                    endDate = formatDateTimeWithCalendar(selectedCalendar.time)
+                    rentEnd.text = endDate
                     val daysDifference = ChronoUnit.DAYS
                         .between(
                             startDateTime,
@@ -108,11 +109,24 @@ class ChekoutFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        binding.btnNext.setOnClickListener {
+            if (binding.tvError.text.equals("")){
+                activity?.changeFragment(SuccessfulFragment.newInstance(),
+                    R.id.cl_chekout)
+                lifecycleScope.launch {
+                    Insert.insertData("bookings",
+                        Booking(startDate, endDate,
+                            activity?.getUser()?.id, carId))
+                }
+            }
+        }
+
         return binding.root
     }
 
     private fun updateUI(data: Bundle) {
         binding.apply {
+            carId = data.getInt("id")
             tvType.text = data.getString("type")
             tvModel.text = data.getString("model")
             tvAddress.text = data.getString("address")
