@@ -13,5 +13,11 @@
     <string name="date_format">%1$d/%2$d/%3$d</string>
 
     <string name="refundable_deposit"><u>Возвращаемый депозит</u></string>
+    <string name="car_adress">Адрес нахождения</string>
+    <string name="rent_start">Начало аренды</string>
+    <string name="rent_end">Конец аренды</string>
+    <string name="rent">Аренда</string>
+    <string name="insurance">Страховка</string>
+    <string name="total">Общая сумма</string>
 
 </resources>
