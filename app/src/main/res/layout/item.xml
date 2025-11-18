@@ -63,7 +63,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/montserrat_medium"
                         android:gravity="center_horizontal"
-                        android:text="per day"
+                        android:text="в день"
                         android:textColor="#200D0D0D"
                         android:textSize="14sp" />
 

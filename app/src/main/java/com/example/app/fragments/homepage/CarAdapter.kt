@@ -4,17 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.app.data.Car
+import com.example.app.data.CarCard
 import com.example.app.databinding.ItemBinding
 
-class CarAdapter(private val cars: MutableList<Car>):
+class CarAdapter(private val cars: List<CarCard>):
     RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
     class ViewHolder(binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val type: TextView = binding.twType
         val model: TextView = binding.twModel
         val price: TextView = binding.twPrice
-        val period: TextView = binding.twPeriod
         val gearbox: TextView = binding.twGearbox
         val fuel: TextView = binding.twFuel
     }
@@ -33,7 +32,6 @@ class CarAdapter(private val cars: MutableList<Car>):
         viewHolder.type.text = cars[position].type
         viewHolder.model.text = cars[position].model
         viewHolder.price.text = price
-        viewHolder.period.text = cars[position].period
         viewHolder.gearbox.text = cars[position].gearbox
         viewHolder.fuel.text = cars[position].fuel
     }

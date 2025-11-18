@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app.MainActivity
 import com.example.app.R
-import com.example.app.data.Cars
 import com.example.app.databinding.FragmentHomepageBinding
 import com.example.app.fragments.settings.SettingsFragment
+import com.example.app.servicies.AllCars
+import kotlinx.coroutines.launch
 
 class HomepageFragment : Fragment() {
 
@@ -31,8 +33,9 @@ class HomepageFragment : Fragment() {
 
         val recyclerView: RecyclerView = binding.rwList
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = CarAdapter(Cars.cars)
-
+        lifecycleScope.launch {
+            recyclerView.adapter = CarAdapter(AllCars.getCars())
+        }
 
         val menu = binding.bnvMenu
         menu.setOnItemSelectedListener { item ->

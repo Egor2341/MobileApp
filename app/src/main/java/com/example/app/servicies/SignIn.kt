@@ -26,7 +26,8 @@ object SignIn {
                         "license_number",
                         "license_date",
                         "avatar",
-                        "created_at"
+                        "created_at",
+                        "id"
                     )
                 ) {
                     filter {
