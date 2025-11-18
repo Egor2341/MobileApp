@@ -16,7 +16,6 @@ import com.example.app.databinding.FragmentHomepageBinding
 import com.example.app.fragments.settings.SettingsFragment
 import com.example.app.servicies.Cars
 import kotlinx.coroutines.launch
-import kotlin.toString
 
 class HomepageFragment : Fragment() {
 
@@ -39,8 +38,19 @@ class HomepageFragment : Fragment() {
         lifecycleScope.launch {
             recyclerView.adapter = CarAdapter(
                 Cars.getCars(),
-                onBookClick = {
-                    activity?.changeFragment(SettingsFragment.newInstance(), R.id.cl_homepage)
+                onBookClick = { car ->
+                    parentFragmentManager.setFragmentResult(
+                        "booking",
+                        bundleOf(
+                            "id" to car.id,
+                            "type" to car.type,
+                            "model" to car.model,
+                            "address" to car.address,
+                            "description" to car.description,
+                            "price" to car.price
+                        )
+                    )
+                    activity?.changeFragment(ChekoutFragment.newInstance(), R.id.cl_homepage, "home")
                 },
                 onDetailClick = { car ->
                     parentFragmentManager.setFragmentResult(
@@ -51,10 +61,15 @@ class HomepageFragment : Fragment() {
                             "model" to car.model,
                             "address" to car.address,
                             "description" to car.description,
-                            "price" to car.price
+                            "price" to car.price,
+                            "insurance" to car.insurance
                         )
                     )
-                    activity?.changeFragment(DetailsFragment.newInstance(), R.id.cl_homepage, "home")
+                    activity?.changeFragment(
+                        DetailsFragment.newInstance(),
+                        R.id.cl_homepage,
+                        "home"
+                    )
                 })
         }
 

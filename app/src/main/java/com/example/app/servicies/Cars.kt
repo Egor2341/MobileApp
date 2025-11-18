@@ -20,7 +20,8 @@ object Cars {
                         "gearbox",
                         "address",
                         "description",
-                        "fuel"
+                        "fuel",
+                        "insurance"
                     )
                 ){
                     filter {

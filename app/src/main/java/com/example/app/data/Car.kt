@@ -9,5 +9,6 @@ data class Car (
     val gearbox: String,
     val address: String,
     val description: String,
-    val fuel: String
+    val fuel: String,
+    val insurance: Int
 ) : Data

@@ -10,7 +10,7 @@ import com.google.android.material.button.MaterialButton
 
 class CarAdapter(
     private val cars: List<Car>,
-    private val onBookClick: () -> Unit,
+    private val onBookClick: (Car) -> Unit,
     private val onDetailClick: (Car) -> Unit
 ) :
     RecyclerView.Adapter<CarAdapter.ViewHolder>() {
@@ -22,6 +22,7 @@ class CarAdapter(
         val gearbox: TextView = binding.twGearbox
         val fuel: TextView = binding.twFuel
         val btnDetails: MaterialButton = binding.btnDetails
+        val btnBookings: MaterialButton = binding.btnBookings
     }
 
 
@@ -36,6 +37,9 @@ class CarAdapter(
         val car = cars[position]
         viewHolder.btnDetails.setOnClickListener {
             onDetailClick(car)
+        }
+        viewHolder.btnBookings.setOnClickListener {
+            onBookClick(car)
         }
         val price = car.price.toString() + "₽"
         viewHolder.type.text = car.type

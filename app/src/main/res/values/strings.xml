@@ -23,5 +23,9 @@
     <string name="address">address</string>
     <string name="description">description</string>
     <string name="price">price</string>
+    <string name="insurance_price">insurance_price</string>
+    <string name="type">type</string>
+    <string name="model">model</string>
+    <string name="per_day">в день</string>
 
 </resources>
