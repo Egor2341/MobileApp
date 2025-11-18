@@ -46,6 +46,7 @@ class HomepageFragment : Fragment() {
                     parentFragmentManager.setFragmentResult(
                         "details",
                         bundleOf(
+                            "id" to car.id,
                             "type" to car.type,
                             "model" to car.model,
                             "address" to car.address,
@@ -53,7 +54,7 @@ class HomepageFragment : Fragment() {
                             "price" to car.price
                         )
                     )
-                    activity?.changeFragment(DetailsFragment.newInstance(), R.id.cl_homepage)
+                    activity?.changeFragment(DetailsFragment.newInstance(), R.id.cl_homepage, "home")
                 })
         }
 
