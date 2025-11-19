@@ -9,6 +9,7 @@ import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentDetailsBinding
 import com.example.app.databinding.FragmentSuccessfulBinding
+import com.example.app.fragments.settings.BookingsFragment
 
 class SuccessfulFragment : Fragment() {
 
@@ -30,6 +31,10 @@ class SuccessfulFragment : Fragment() {
 
         binding.btnHome.setOnClickListener {
             activity?.changeFragment(HomepageFragment.newInstance(), R.id.cl_successful)
+        }
+
+        binding.btnBookings.setOnClickListener {
+            activity?.changeFragment(BookingsFragment.newInstance(), R.id.cl_successful)
         }
 
         return binding.root

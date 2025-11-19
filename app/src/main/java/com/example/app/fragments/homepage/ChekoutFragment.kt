@@ -35,6 +35,11 @@ class ChekoutFragment : Fragment() {
     private var startDate: String = ""
     private var endDate: String = ""
     private var carId: Int = 0
+    private var carType: String = ""
+    private var carModel: String = ""
+    private var carAddress: String = ""
+    private var duration: String = ""
+    private var total: String = ""
 
 
     override fun onCreateView(
@@ -86,17 +91,17 @@ class ChekoutFragment : Fragment() {
                             endDateTime
                         ).toInt()
                     if (daysDifference >= 1) {
-                        var text = daysDifference.toString() + "x "
+                        duration = daysDifference.toString() + "x "
                         if (daysDifference == 1) {
-                            text += "день"
+                            duration += "день"
                         } else if (daysDifference < 5) {
-                            text += "дня"
+                            duration += "дня"
                         } else {
-                            text += "дней"
+                            duration += "дней"
                         }
-                        binding.tvRentCountDays.text = text
-                        binding.tvInsuranceCountDays.text = text
-                        val total  = (rentPrice * daysDifference).toString() + "₽"
+                        binding.tvRentCountDays.text = duration
+                        binding.tvInsuranceCountDays.text = duration
+                        total = (rentPrice * daysDifference).toString() + "₽"
                         binding.tvTotal.text = total
                     }
                 } else {
@@ -110,13 +115,28 @@ class ChekoutFragment : Fragment() {
         }
 
         binding.btnNext.setOnClickListener {
-            if (binding.tvError.text.equals("")){
-                activity?.changeFragment(SuccessfulFragment.newInstance(),
-                    R.id.cl_chekout)
+            if (binding.tvError.text.equals("")) {
+                activity?.changeFragment(
+                    SuccessfulFragment.newInstance(),
+                    R.id.cl_chekout
+                )
                 lifecycleScope.launch {
-                    Insert.insertData("bookings",
-                        Booking(startDate, endDate,
-                            activity?.getUser()?.id, carId))
+                    val user = activity?.getUser()
+                    if (user != null) {
+                        val userName =
+                            user.last_name + " " + user.first_name + " " + user.patronymic
+                        Insert.insertData(
+                            "bookings",
+                            Booking(
+                                startDate, endDate,
+                                user.id, carId,
+                                carType, carModel,
+                                rentPrice, carAddress,
+                                userName, user.license_number,
+                                duration, insurancePrice, total
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -127,14 +147,17 @@ class ChekoutFragment : Fragment() {
     private fun updateUI(data: Bundle) {
         binding.apply {
             carId = data.getInt("id")
-            tvType.text = data.getString("type")
-            tvModel.text = data.getString("model")
-            tvAddress.text = data.getString("address")
+            carType = data.getString("type").toString()
+            tvType.text = carType
+            carModel = data.getString("model").toString()
+            tvModel.text = carModel
+            carAddress = data.getString("address").toString()
+            tvAddress.text = carAddress
             rentPrice = data.getInt("price")
             var price = rentPrice.toString() + "₽"
             tvPrice.text = price
             price = rentPrice.toString() + "₽/день"
-            tvRentPrice.text =price
+            tvRentPrice.text = price
             insurancePrice = data.getInt("insurance")
             val insurance = insurancePrice.toString() + "₽/день"
             tvInsurancePrice.text = insurance

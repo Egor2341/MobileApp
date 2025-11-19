@@ -140,6 +140,10 @@ class MainActivity : AppCompatActivity() {
         return user
     }
 
+    fun getUserId(): Int? {
+        return user.id
+    }
+
     fun signIn(email: String, password: String) {
         Log.d("SIGNIN", email)
         Log.d("SIGNIN", password)

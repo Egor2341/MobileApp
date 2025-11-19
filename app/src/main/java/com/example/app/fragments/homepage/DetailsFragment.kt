@@ -42,6 +42,9 @@ class DetailsFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        binding.btnBooking.setOnClickListener {
+            activity?.changeFragment(ChekoutFragment.newInstance(), R.id.cl_details, "details")
+        }
 
         return binding.root
     }

@@ -34,6 +34,7 @@ class CarAdapter(
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+
         val car = cars[position]
         viewHolder.btnDetails.setOnClickListener {
             onDetailClick(car)

@@ -27,5 +27,9 @@
     <string name="type">type</string>
     <string name="model">model</string>
     <string name="per_day">в день</string>
+    <string name="status">status</string>
+    <string name="date">date</string>
+    <string name="id">id</string>
+    <string name="license">license</string>
 
 </resources>

@@ -49,6 +49,14 @@ class SettingsFragment : Fragment() {
             )
         }
 
+        binding.btnBookings.setOnClickListener {
+            activity?.changeFragment(
+                BookingsFragment.newInstance(),
+                R.id.cl_settings,
+                "settings"
+            )
+        }
+
 
         return binding.root
     }
