@@ -24,4 +24,14 @@ object Bookings {
             return listOf()
         }
     }
+
+    suspend fun deleteBooking(id: Int) {
+        Base.getClient()
+            .from("bookings")
+            .delete {
+                filter {
+                    eq("id", id)
+                }
+            }
+    }
 }

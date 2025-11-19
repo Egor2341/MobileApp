@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.app.MainActivity
 import com.example.app.R
 import com.example.app.databinding.FragmentHomepageBinding
+import com.example.app.fragments.favourites.FavouritesFragment
 import com.example.app.fragments.settings.SettingsFragment
 import com.example.app.servicies.Cars
 import kotlinx.coroutines.launch
@@ -79,6 +80,7 @@ class HomepageFragment : Fragment() {
                 R.id.btnm_main -> {
                     menu.menu.findItem(R.id.btnm_main).setIcon(R.drawable.ic_main2)
                     menu.menu.findItem(R.id.btnm_settings).setIcon(R.drawable.ic_settings1)
+                    menu.menu.findItem(R.id.btnm_favorites).setIcon(R.drawable.ic_favorites1)
                     activity?.changeFragment(
                         newInstance(),
                         R.id.cl_settings
@@ -87,11 +89,19 @@ class HomepageFragment : Fragment() {
                 }
 
                 R.id.btnm_favorites -> {
+                    menu.menu.findItem(R.id.btnm_main).setIcon(R.drawable.ic_main1)
+                    menu.menu.findItem(R.id.btnm_settings).setIcon(R.drawable.ic_settings1)
+                    menu.menu.findItem(R.id.btnm_favorites).setIcon(R.drawable.ic_favorities2)
+                    activity?.changeFragment(
+                        FavouritesFragment.newInstance(),
+                        R.id.cl_homepage
+                    )
                     true
                 }
 
                 R.id.btnm_settings -> {
                     menu.menu.findItem(R.id.btnm_main).setIcon(R.drawable.ic_main1)
+                    menu.menu.findItem(R.id.btnm_favorites).setIcon(R.drawable.ic_favorites1)
                     menu.menu.findItem(R.id.btnm_settings).setIcon(R.drawable.ic_settings2)
                     activity?.changeFragment(
                         SettingsFragment.newInstance(),

@@ -33,4 +33,26 @@ object Cars {
             return listOf()
         }
     }
+
+    suspend fun getFavCars(ids: List<Int>): List<Car> {
+        return Base.getClient()
+            .from("cars")
+            .select(
+                columns = Columns.list(
+                    "id",
+                    "type",
+                    "model",
+                    "price",
+                    "gearbox",
+                    "address",
+                    "description",
+                    "fuel",
+                    "insurance"
+                )
+            ) {
+                filter {
+                    isIn("id", ids)
+                }
+            }.decodeList<Car>()
+    }
 }

@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.app.MainActivity
+import com.example.app.R
 import com.example.app.data.Booking
 import com.example.app.databinding.FragmentBookingBinding
+import com.example.app.servicies.Bookings
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
 
 class BookingFragment : Fragment() {
 
@@ -17,13 +21,15 @@ class BookingFragment : Fragment() {
         get() = _binding
             ?: throw IllegalStateException("Binding must not be null")
 
+    var activity: MainActivity? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
-        val activity = requireActivity() as? MainActivity
+        activity = requireActivity() as? MainActivity
 
         binding.btnBack.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -58,6 +64,16 @@ class BookingFragment : Fragment() {
             tvUser.text = res.user_name
             tvLicense.text = res.license
             tvTotal.text = res.total
+
+            binding.btnCancelBooking.setOnClickListener {
+                lifecycleScope.launch {
+                    Bookings.deleteBooking(res.id ?: 0)
+                    activity?.changeFragment(
+                        BookingsFragment.newInstance(),
+                        R.id.cl_booking
+                    )
+                }
+            }
         }
     }
 

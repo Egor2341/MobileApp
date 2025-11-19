@@ -52,4 +52,17 @@ object Fav {
             return 1;
         }
     }
+
+    suspend fun getIdCars(user: Int): List<Int> {
+        val res = mutableListOf<Int>()
+        Base.getClient().from("favourites")
+            .select(columns = Columns.list("car_id")){
+                filter {
+                    eq("user_id", user)
+                }
+            }.decodeList<Map<String, Int>>().map { element ->
+                res.add(element.get("car_id")?:0)
+            }
+        return res
+    }
 }
